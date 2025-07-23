@@ -65,7 +65,13 @@
             background-color: #e2e8f0; color: #94a3b8; cursor: not-allowed;
         }
         #topic-switcher {
-            padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; background-color: #e2e8f0; border: 1px solid #cbd5e1;
+            padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; border: 1px solid;
+        }
+
+        /* --- Dark Mode Base --- */
+        .dark-mode {
+             background-color: #111827; /* gray-900 */
+             color: #d1d5db; /* gray-300 */
         }
     </style>
 </head>
@@ -124,7 +130,7 @@
                 blue: { accentBg: 'bg-blue-600', accentText: 'text-blue-800', accentBgLight: 'bg-blue-50', accentBorder: 'border-blue-500' },
                 green: { accentBg: 'bg-green-700', accentText: 'text-green-800', accentBgLight: 'bg-green-50', accentBorder: 'border-green-600' },
                 indigo: { accentBg: 'bg-indigo-600', accentText: 'text-indigo-800', accentBgLight: 'bg-indigo-50', accentBorder: 'border-indigo-500' },
-                dark: { accentBg: 'bg-gray-800', accentText: 'text-gray-100', accentBgLight: 'bg-gray-900', accentBorder: 'border-gray-600' }
+                dark: { accentBg: 'bg-gray-600', accentText: 'text-gray-100', accentBgLight: 'bg-gray-700', accentBorder: 'border-gray-500' }
             };
 
             // --- DOM ELEMENT REFERENCES ---
@@ -150,7 +156,6 @@
 
                 buildTopicSwitcher();
                 renderContent(kbData);
-                applyView(currentView);
                 applyTheme(currentTheme);
                 goToPage(0);
             }
@@ -169,7 +174,7 @@
 
             function renderContent(kbData) {
                 container.innerHTML = '';
-                kbData.entryPoints.forEach(entry => {
+                kbData.entryPoints.sort((a,b) => a.step - b.step).forEach(entry => {
                     const cardHTML = `
                         <div class="kb-card p-2">
                             <div class="bg-white rounded-xl shadow-md flex-grow flex flex-col h-full">
@@ -215,25 +220,32 @@
                 nextButton.disabled = currentIndex === totalPages - 1;
                 progressIndicator.textContent = `Page ${currentIndex + 1} of ${totalPages}`;
             }
-            
-            // --- VIEW & THEME LOGIC ---
-            function updateDarkModeClasses(isDark) {
-                const replacements = [
-                    { selector: 'body', light: 'bg-slate-50', dark: 'bg-gray-900' },
-                    { selector: '.kb-card > div', light: 'bg-white', dark: 'bg-gray-800' },
-                    { selector: '#ui-switcher, #theme-switcher', light: 'bg-slate-200', dark: 'bg-gray-700' },
-                    { selector: '.bg-slate-100', light: 'bg-slate-100', dark: 'bg-gray-700' },
-                    { selector: '.border-slate-400', light: 'border-slate-400', dark: 'border-gray-600' },
-                    { selector: 'h1, h2, .text-slate-900', light: 'text-slate-900', dark: 'text-gray-100' },
-                    { selector: '.text-slate-800', light: 'text-slate-800', dark: 'text-gray-200' },
-                    { selector: '.text-slate-700', light: 'text-slate-700', dark: 'text-gray-300' },
-                    { selector: '.text-slate-600, #progress-indicator', light: 'text-slate-600', dark: 'text-gray-400' }
-                ];
 
-                replacements.forEach(({ selector, light, dark }) => {
-                    document.querySelectorAll(selector).forEach(el => {
-                        el.classList.replace(isDark ? light : dark, isDark ? dark : light);
-                    });
+            // --- VIEW & THEME LOGIC ---
+            function applyView(viewName) {
+                currentView = viewName;
+                appContainer.classList.remove('view-page', 'view-scroll');
+                appContainer.classList.add(`view-${viewName}`);
+                
+                if(viewName === 'scroll') {
+                    container.style.transform = 'none';
+                } else {
+                    goToPage(currentIndex);
+                }
+
+                uiSwitcher.querySelectorAll('.ui-button').forEach(button => {
+                    const isActive = button.dataset.view === viewName;
+                    button.classList.toggle('active', isActive);
+                    button.classList.toggle('inactive', !isActive);
+                    button.classList.remove('bg-white', 'text-slate-900', 'bg-gray-600', 'text-gray-100', 'bg-gray-700');
+                    
+                    if (isActive) {
+                        if (currentTheme === 'dark') {
+                            button.classList.add('bg-gray-600', 'text-gray-100');
+                        } else {
+                            button.classList.add('bg-white', 'text-slate-900');
+                        }
+                    }
                 });
             }
 
@@ -242,42 +254,51 @@
                 const theme = themes[themeName];
                 const isDark = themeName === 'dark';
 
-                // Apply dynamic accent colors
-                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.className = el.className.replace(/bg-\w+-\d+/g, ''); el.classList.add(theme.accentBg, 'themable-accent-bg'); });
-                document.querySelectorAll('.themable-accent-text').forEach(el => { el.className = el.className.replace(/text-\w+-\d+/g, ''); el.classList.add(theme.accentText, 'themable-accent-text'); });
-                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.className = el.className.replace(/bg-\w+-\d+/g, ''); el.classList.add(theme.accentBgLight, 'themable-accent-bg-light'); });
-                document.querySelectorAll('.themable-accent-border').forEach(el => { el.className = el.className.replace(/border-\w+-\d+/g, ''); el.classList.add(theme.accentBorder, 'themable-accent-border'); });
+                const toggleClasses = (selector, lightClass, darkClass) => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        el.classList.remove(lightClass, darkClass);
+                        el.classList.add(isDark ? darkClass : lightClass);
+                    });
+                };
                 
-                // Handle base dark/light mode classes
-                updateDarkModeClasses(isDark);
+                document.body.classList.toggle('dark-mode', isDark);
+                toggleClasses('body', 'bg-slate-50', 'bg-gray-900');
+                toggleClasses('#ui-switcher, #theme-switcher', 'bg-slate-200', 'bg-gray-800');
+                toggleClasses('#topic-switcher', 'border-slate-400', 'border-gray-600');
+                toggleClasses('#topic-switcher', 'text-slate-900', 'text-gray-300');
+                toggleClasses('.control-button.inactive', 'bg-f1f5f9', 'bg-gray-700');
+                toggleClasses('.control-button.inactive', 'text-slate-700', 'text-gray-300');
                 
-                // Update theme button states
+                toggleClasses('.kb-card > div', 'bg-white', 'bg-gray-800');
+                toggleClasses('h1, h2, .text-slate-900', 'text-slate-900', 'text-gray-50');
+                toggleClasses('.text-slate-800', 'text-slate-800', 'text-gray-200');
+                toggleClasses('.text-slate-700', 'text-slate-700', 'text-gray-300');
+                // --- THIS IS THE CORRECTED LINE ---
+                toggleClasses('.text-slate-600', 'text-slate-600', 'text-gray-300');
+                // --- END CORRECTION ---
+                toggleClasses('.bg-slate-100', 'bg-slate-100', 'bg-gray-700');
+                toggleClasses('.border-slate-400', 'border-slate-400', 'border-gray-600');
+                toggleClasses('.nav-button:disabled', 'bg-e2e8f0', 'bg-gray-700');
+                toggleClasses('.nav-button:disabled', 'text-94a3b8', 'text-gray-500');
+
+                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg)); el.classList.add(theme.accentBg); });
+                document.querySelectorAll('.themable-accent-text').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentText)); el.classList.add(theme.accentText); });
+                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBgLight)); el.classList.add(theme.accentBgLight); });
+                document.querySelectorAll('.themable-accent-border').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBorder)); el.classList.add(theme.accentBorder); });
+                document.querySelectorAll('.nav-button:not(:disabled)').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg), 'text-white'); el.classList.add(theme.accentBg, 'text-white'); });
+
                 themeSwitcher.querySelectorAll('.theme-button').forEach(button => {
                     const buttonTheme = button.dataset.theme;
-                    button.classList.toggle('active', buttonTheme === themeName);
-                    button.classList.toggle('inactive', buttonTheme !== themeName);
-                    button.className = button.className.replace(/bg-\w+-\d+/g, '');
-                    if(buttonTheme === themeName) button.classList.add(themes[buttonTheme].accentBg);
+                    if (buttonTheme === themeName) {
+                        button.classList.remove('inactive');
+                        button.classList.add('active', themes[buttonTheme].accentBg, 'text-white');
+                    } else {
+                        button.classList.remove('active', 'text-white', ...Object.values(themes).map(t => t.accentBg));
+                        button.classList.add('inactive');
+                    }
                 });
-
-                // Update nav button colors
-                document.querySelectorAll('.nav-button:not(:disabled)').forEach(el => {
-                    el.className = el.className.replace(/bg-\w+-\d+/g, '');
-                    el.classList.add(theme.accentBg, 'text-white');
-                });
-            }
-
-            function applyView(viewName) {
-                currentView = viewName;
-                appContainer.classList.remove('view-page', 'view-scroll');
-                appContainer.classList.add(`view-${viewName}`);
-                container.style.transform = (viewName === 'scroll') ? 'none' : `translateX(-${currentIndex * 100}%)`;
-                uiSwitcher.querySelectorAll('.ui-button').forEach(button => {
-                    button.classList.toggle('active', button.dataset.view === viewName);
-                    button.classList.toggle('inactive', button.dataset.view !== viewName);
-                    button.classList.toggle('bg-white', button.dataset.view === viewName);
-                    button.classList.toggle('text-slate-900', button.dataset.view === viewName);
-                });
+                
+                applyView(currentView);
             }
 
             // --- EVENT HANDLERS ---
@@ -294,17 +315,21 @@
             // --- INITIALIZE ---
             async function initializeApp() {
                 try {
-                    const response = await fetch('./data/content.json');
+                    const response = await fetch('./data/content.json'); 
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     libraryData = await response.json();
                     
-                    sortedTopicIds = Object.keys(libraryData); // Basic sort for now
+                    sortedTopicIds = Object.keys(libraryData).sort((a,b) => {
+                        const orderA = libraryData[a].knowledgeBase.display_order || 0;
+                        const orderB = libraryData[b].knowledgeBase.display_order || 0;
+                        return orderA - orderB;
+                    });
+
                     currentTopicId = sortedTopicIds[0];
-                    
                     renderApp();
                 } catch (error) {
                     console.error("Failed to load content:", error);
-                    appContainer.innerHTML = `<div class="text-center p-8 bg-red-100 text-red-700 rounded-lg"><h3 class="font-bold text-lg">An error occurred</h3><p>Could not load the content from ./data/content.json. Please ensure the file exists and the server is running.</p></div>`;
+                    appContainer.innerHTML = `<div class="text-center p-8 bg-red-100 text-red-700 rounded-lg"><h3 class="font-bold text-lg">An error occurred</h3><p>Could not load content from ./data/content.json. Please ensure the file exists and is accessible.</p></div>`;
                 }
             }
             
