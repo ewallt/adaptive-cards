@@ -1,0 +1,115 @@
+{
+      "knowledgeBase": {
+       "display_order": 10,
+        "id": "kb-temptation-01",
+        "pageTitle": "On the Petition: 'Lead Us Not into Temptation'",
+        "title": "On the Petition: 'Lead Us Not into Temptation'",
+        "summary": "A structured exploration of the source of temptation, the purpose of trials, and the divine safeguards available to the believer, based on the provided commentary.",
+        "author": "Gemini Assistant",
+        "lastUpdated": "2025-07-12T17:20:00-06:00",
+        "entryPoints": [
+          {
+            "id": "temptation-01-source",
+            "step": 1,
+            "title": "The Source and Nature of Temptation",
+            "corePrinciple": "Temptation to sin does not come from God, but from Satan and the evil within our own hearts.",
+            "development": "It is a foundational truth that God does not tempt anyone with evil. The desire to sin originates from two distinct sources: the external influence of Satan, who acts as the accuser, and the internal inclinations of our own flawed nature. Satan's strategy is to entice us into sin, thereby exposing our character weaknesses, so he can then accuse us before the heavenly universe as being unworthy of God's love and redemption.",
+            "scriptureReferences": [
+              {
+                "citation": "James 1:13 (R.V.)",
+                "text": "God cannot be tempted with evil, and He Himself tempteth no man.",
+                "relevance": "Establishes the core principle that God is not the source of temptation."
+              },
+              {
+                "citation": "Zechariah 3:1-4",
+                "text": "(Paraphrased) Satan is seen standing at the right hand of the Angel of the Lord, accusing Joshua the high priest... resisting the work the Angel desires to do for him.",
+                "relevance": "Provides a symbolic prophecy of Satan's role as the accuser who tempts and then points out the sin."
+              }
+            ],
+            "keyQuote": "The enemy leads us into sin, and then he accuses us before the heavenly universe as unworthy of the love of God.",
+            "tags": [
+              "temptation",
+              "sin",
+              "satan",
+              "source",
+              "evil",
+              "accusation"
+            ]
+          },
+          {
+            "id": "temptation-02-purpose",
+            "step": 2,
+            "title": "The Purpose of Trials vs. Temptation",
+            "corePrinciple": "God permits trials as a blessing to build character, while the prayer asks for protection from being overcome by our own evil desires.",
+            "development": "There is a critical distinction between trials and temptations. God allows us to encounter hardships, persecution, and obstacles not as a punishment, but as the greatest blessing for our spiritual development. Each trial we endure and every temptation we resist through divine power becomes a new experience that advances us in character building. Therefore, the prayer 'Lead us not into temptation' is not a request to live a life free of all difficulty. Rather, it is a humble surrender to God's guidance, asking Him to lead us in safe paths and not allow us to be brought into situations where we would be drawn away and defeated by our own sinful inclinations.",
+            "scriptureReferences": [
+               {
+                "citation": "Isaiah 30:21",
+                "text": "This is the way, walk ye in it.",
+                "relevance": "Illustrates the desired state of listening to God's voice for guidance in safe paths."
+              }
+            ],
+            "keyQuote": "Every temptation resisted, every trial bravely borne, gives us a new experience and advances us in the work of character building.",
+            "tags": [
+              "trials",
+              "character",
+              "blessing",
+              "hardship",
+              "guidance",
+              "surrender"
+            ]
+          },
+          {
+            "id": "temptation-03-safeguard",
+            "step": 3,
+            "title": "The Christian's Safeguard and Response",
+            "corePrinciple": "The ultimate safeguard is the indwelling of Christ, and our responsibility is to avoid the ground where temptation thrives.",
+            "development": "The prayer itself contains a promise of protection. When we commit ourselves to God, we have the assurance that He will provide a 'way to escape' any temptation we face. However, the only truly effective safeguard against the power of evil is the constant presence of Christ in the heart through faith in His righteousness. It is this indwelling that exposes selfishness—the root of temptation's power—and transforms the character. Our part in this is proactive: we must not entertain or linger on the supposed benefits of sin. We are called to consciously close every avenue through which the tempter might gain access to our hearts and minds.",
+            "scriptureReferences": [
+              {
+                "citation": "1 Corinthians 10:13",
+                "text": "He 'will not suffer you to be tempted above that ye are able; but will with the temptation also make a way to escape, that ye may be able to bear it.'",
+                "relevance": "The explicit promise that God provides a means of escape from overwhelming temptation."
+              }
+            ],
+            "keyQuote": "The only safeguard against evil is the indwelling of Christ in the heart through faith in His righteousness.",
+            "tags": [
+              "safeguard",
+              "protection",
+              "Christ",
+              "faith",
+              "escape",
+              "responsibility"
+            ]
+          },
+          {
+            "id": "temptation-04-conflict",
+            "step": 4,
+            "title": "The Reality of Spiritual Conflict",
+            "corePrinciple": "We are not alone in the battle against evil; Christ intercedes for us and heavenly angels are sent to aid us.",
+            "development": "We are participants in a real, though unseen, spiritual conflict. We are not left to fight alone. Christ, who died for us, will never abandon us in the battle. He actively intercedes on our behalf, praying for our faith as He did for Peter. Furthermore, angelic beings are dispatched to aid those who are tempted, pushing back the forces of evil and guiding them to stand on a sure foundation. The ultimate security lies in knowing and believing the love God has for us. This love acts as an impregnable fortress against all of Satan's deceptions and assaults.",
+            "scriptureReferences": [
+              {
+                "citation": "Luke 22:31, 32",
+                "text": "Satan hath desired to have you, that he may sift you as wheat: but I have prayed for thee, that thy faith fail not.",
+                "relevance": "Shows Christ's active intercession for his followers in the face of spiritual attack."
+              },
+              {
+                "citation": "Proverbs 18:10",
+                "text": "The name of the Lord is a strong tower: the righteous runneth into it, and is safe.",
+                "relevance": "A metaphor for the security and safety found in God's character and power."
+              }
+            ],
+            "keyQuote": "The battles waging between the two armies are as real as those fought by the armies of this world, and on the issue of the spiritual conflict eternal destinies depend.",
+            "tags": [
+              "spiritual warfare",
+              "conflict",
+              "angels",
+              "intercession",
+              "security",
+              "love of God"
+            ]
+          }
+        ]
+      }
+    }
