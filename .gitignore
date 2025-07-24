@@ -1,0 +1,5 @@
+# Node.js dependencies folder
+/node_modules/
+
+# Ignore the compiled content file
+/public/data/content.json
