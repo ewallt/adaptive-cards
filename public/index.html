@@ -1,332 +1,469 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
+
 <html lang="en" class="scroll-smooth">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Knowledge Base</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+
         body {
+
             font-family: 'Inter', sans-serif;
+
         }
-        #app-container.view-page {
+
+        #app-container {
+
             display: flex;
+
             flex-direction: column;
+
             min-height: calc(100vh - 4rem);
+
         }
-        #app-container.view-scroll {
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh - 4rem);
-        }
+
         #page-viewport {
+
             width: 100%;
+
+            overflow: visible;
+
         }
+
         #kb-container {
-            transition: transform 0.4s ease-in-out;
+
+            display: block;
+
         }
-        /* Page View Styles */
-        .view-page #page-viewport { overflow: hidden; }
-        .view-page #kb-container { display: flex; }
-        .view-page .kb-card { width: 100%; flex-shrink: 0; display: flex; flex-direction: column; }
-        .view-page .card-content-wrapper { flex-grow: 1; overflow-y: auto; }
-        .view-page #navigation-controls { display: flex; }
-        
-        /* Scroll View Styles */
-        .view-scroll #page-viewport { overflow: visible; }
-        .view-scroll #kb-container { display: block; }
-        .view-scroll .kb-card { margin-bottom: 2rem; }
-        .view-scroll #navigation-controls { display: none; }
+
+        .kb-card {
+
+            margin-bottom: 2rem;
+
+        }
 
         /* General Component Styles */
+
         .step-circle {
+
             width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; flex-shrink: 0;
+
         }
+
         .control-button {
+
             padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 600; transition: all 0.2s ease-in-out; border: 2px solid transparent;
+
         }
+
         .control-button.active {
+
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
         }
+
         .theme-button.active {
+
             color: white;
+
         }
+
         .control-button.inactive {
+
              background-color: #f1f5f9; color: #334155;
+
         }
+
         .control-button.inactive:hover { background-color: #e2e8f0; }
-        .nav-button {
-            padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s ease-in-out;
-        }
-        .nav-button:disabled {
-            background-color: #e2e8f0; color: #94a3b8; cursor: not-allowed;
-        }
+
         #topic-switcher {
+
             padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; border: 1px solid #d1d5db; max-width: 100%;
+
         }
+
     </style>
+
 </head>
+
 <body class="bg-slate-50 text-slate-800">
 
+
+
     <div id="app-container" class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 w-full">
+
         <header class="text-center mb-8">
+
             <h1 id="main-title" class="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl"></h1>
+
             <div id="topic-switcher-container" class="mt-4"></div>
+
         </header>
 
+
+
         <div class="flex flex-col sm:flex-row justify-center items-center gap-6 my-6 flex-wrap">
-            <div id="ui-switcher" class="flex items-center gap-2 p-1 bg-slate-200 rounded-full">
-                <button data-view="page" class="ui-button control-button">Page</button>
-                <button data-view="scroll" class="ui-button control-button">Scroll</button>
-            </div>
+
             <div id="theme-switcher" class="flex items-center gap-2 p-1 bg-slate-200 rounded-full">
+
                 <button data-theme="blue" class="theme-button control-button">Blue</button>
+
                 <button data-theme="green" class="theme-button control-button">Green</button>
+
                 <button data-theme="indigo" class="theme-button control-button">Indigo</button>
+
                 <button data-theme="dark" class="theme-button control-button">Dark</button>
+
             </div>
+
         </div>
+
+
 
         <div id="page-viewport" class="flex-grow">
+
             <div id="kb-container"></div>
+
         </div>
-        
-        <div id="navigation-controls" class="flex justify-between items-center mt-6">
-            <button id="prev-button" class="nav-button">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                Previous
-            </button>
-            <div id="progress-indicator" class="text-sm font-medium text-slate-600"></div>
-            <button id="next-button" class="nav-button">
-                Next
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </button>
-        </div>
+
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- STATE MANAGEMENT ---
-            let libraryData = null;
-            let sortedTopicIds = null;
-            let currentTopicId = null;
-            let currentIndex = 0;
-            let totalPages = 0;
-            let currentTheme = 'blue';
-            let currentView = 'page';
 
-            // --- THEME DEFINITIONS (From your goal code) ---
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- STATE MANAGEMENT ---
+
+            let libraryData = null;
+
+            let sortedTopicIds = null;
+
+            let currentTopicId = null;
+
+            let currentTheme = 'blue';
+
+
+
+            // --- THEME DEFINITIONS ---
+
             const themes = {
+
                 blue: { accentBg: 'bg-blue-600', accentText: 'text-blue-800', accentBgLight: 'bg-blue-50', accentBorder: 'border-blue-500' },
+
                 green: { accentBg: 'bg-green-700', accentText: 'text-green-800', accentBgLight: 'bg-green-50', accentBorder: 'border-green-600' },
+
                 indigo: { accentBg: 'bg-indigo-600', accentText: 'text-indigo-800', accentBgLight: 'bg-indigo-50', accentBorder: 'border-indigo-500' },
+
                 dark: { accentBg: 'bg-gray-800', accentText: 'text-gray-100', accentBgLight: 'bg-gray-900', accentBorder: 'border-gray-600' }
+
             };
 
+
+
             // --- DOM ELEMENT REFERENCES ---
+
             const appContainer = document.getElementById('app-container');
+
             const container = document.getElementById('kb-container');
+
             const mainTitleEl = document.getElementById('main-title');
+
             const themeSwitcher = document.getElementById('theme-switcher');
-            const uiSwitcher = document.getElementById('ui-switcher');
-            const prevButton = document.getElementById('prev-button');
-            const nextButton = document.getElementById('next-button');
+
             const topicSwitcherContainer = document.getElementById('topic-switcher-container');
 
+
+
             // --- RENDER FUNCTIONS ---
+
             function renderApp() {
+
                 if (!libraryData || !currentTopicId) return;
+
                 const kbData = libraryData[currentTopicId].knowledgeBase;
+
                 if (!kbData) return;
+
                 
+
                 document.title = kbData.pageTitle || 'Knowledge Base';
+
                 mainTitleEl.textContent = kbData.title;
-                totalPages = kbData.entryPoints.length;
+
+
 
                 buildTopicSwitcher();
+
                 renderContent(kbData);
+
                 applyTheme(currentTheme);
-                goToPage(0);
+
             }
+
+
 
             function buildTopicSwitcher() {
+
                 let html = '<select id="topic-switcher">';
+
                 sortedTopicIds.forEach(topicId => {
+
                     const topic = libraryData[topicId].knowledgeBase;
+
                     const isSelected = topicId === currentTopicId ? 'selected' : '';
+
                     html += `<option value="${topicId}" ${isSelected}>${topic.title}</option>`;
+
                 });
+
                 html += '</select>';
+
                 topicSwitcherContainer.innerHTML = html;
+
                 document.getElementById('topic-switcher').addEventListener('change', handleTopicChange);
+
             }
+
+
 
             function renderContent(kbData) {
+
                 container.innerHTML = '';
+
                 kbData.entryPoints.sort((a,b) => a.step - b.step).forEach(entry => {
+
                     const cardHTML = `
+
                         <div class="kb-card p-2">
+
                             <div class="bg-white rounded-xl shadow-md flex-grow flex flex-col h-full">
+
                                 <div class="card-content-wrapper p-6 sm:p-8">
+
                                     <div class="flex items-start sm:items-center space-x-4 mb-4">
+
                                         <div class="step-circle themable-accent-bg">${entry.step}</div>
+
                                         <h2 class="text-2xl font-bold text-slate-900">${entry.title}</h2>
+
                                     </div>
+
                                     <p class="themable-accent-text themable-accent-bg-light text-lg font-semibold p-4 rounded-lg mb-6">${entry.corePrinciple}</p>
+
                                     <p class="text-slate-600 leading-relaxed mb-6">${entry.development}</p>
+
                                     ${(entry.scriptureReferences && entry.scriptureReferences.length > 0) ? entry.scriptureReferences.map(ref => `
+
                                         <div class="bg-slate-100 border-l-4 border-slate-400 p-4 rounded-r-lg mb-4">
+
                                             <p class="font-bold text-slate-800">${ref.citation}</p>
+
                                             <p class="italic text-slate-700 mt-1">"${ref.text}"</p>
+
                                             <p class="text-sm text-slate-600 mt-2">${ref.relevance}</p>
+
                                         </div>
+
                                     `).join('') : ''}
+
                                     ${entry.keyQuote ? `
+
                                         <blockquote class="themable-accent-border border-l-4 pl-4 py-2 my-6">
+
                                             <p class="text-lg italic text-slate-700 font-medium">"${entry.keyQuote}"</p>
+
                                         </blockquote>
+
                                     ` : ''}
+
                                 </div>
+
                             </div>
+
                         </div>`;
+
                     container.innerHTML += cardHTML;
+
                 });
+
             }
 
-            // --- NAVIGATION LOGIC ---
-            function goToPage(index) {
-                if (index < 0 || index >= totalPages) return;
-                currentIndex = index;
-                if (currentView === 'page') {
-                    container.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-                updateNavControls();
-            }
 
-            function updateNavControls() {
-                prevButton.disabled = currentIndex === 0;
-                nextButton.disabled = currentIndex === totalPages - 1;
-            }
 
-            // --- VIEW & THEME LOGIC (COPIED DIRECTLY FROM YOUR GOAL CODE) ---
-            function applyView(viewName) {
-                currentView = viewName;
-                appContainer.classList.remove('view-page', 'view-scroll');
-                appContainer.classList.add(`view-${viewName}`);
-                
-                if(viewName === 'scroll') {
-                    container.style.transform = 'none';
-                } else {
-                    goToPage(currentIndex);
-                }
-
-                uiSwitcher.querySelectorAll('.ui-button').forEach(button => {
-                    if (button.dataset.view === viewName) {
-                        button.classList.remove('inactive');
-                        if (currentTheme === 'dark') {
-                            button.classList.add('active', 'bg-gray-700', 'text-gray-100');
-                        } else {
-                            button.classList.add('active', 'bg-white', 'text-slate-900');
-                        }
-                    } else {
-                        button.classList.remove('active', 'bg-white', 'text-slate-900', 'bg-gray-700', 'text-gray-100');
-                        button.classList.add('inactive');
-                    }
-                });
-            }
+            // --- THEME LOGIC ---
 
             function applyTheme(themeName) {
-                currentTheme = themeName;
-                const theme = themes[themeName];
-                
-                if (themeName === 'dark') {
-                    document.body.className = 'bg-gray-900 text-gray-100';
-                } else {
-                    document.body.className = 'bg-slate-50 text-slate-800';
-                }
-                
-                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg)); el.classList.add(theme.accentBg); });
-                document.querySelectorAll('.themable-accent-text').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentText)); el.classList.add(theme.accentText); });
-                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBgLight)); el.classList.add(theme.accentBgLight); });
-                document.querySelectorAll('.themable-accent-border').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBorder)); el.classList.add(theme.accentBorder); });
-                document.querySelectorAll('.nav-button:not(:disabled)').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg), 'text-white'); el.classList.add(theme.accentBg, 'text-white'); });
 
-                // Direct style replacement for dark mode, from your goal code
+                currentTheme = themeName;
+
+                const theme = themes[themeName];
+
+                
+
                 if (themeName === 'dark') {
-                    document.querySelectorAll('.kb-card .bg-white').forEach(el => { el.classList.remove('bg-white'); el.classList.add('bg-gray-800'); });
-                    document.querySelectorAll('.text-slate-900').forEach(el => { el.classList.remove('text-slate-900'); el.classList.add('text-gray-100'); });
-                    document.querySelectorAll('.text-slate-600').forEach(el => { el.classList.remove('text-slate-600'); el.classList.add('text-gray-300'); });
-                    document.querySelectorAll('.bg-slate-100').forEach(el => { el.classList.remove('bg-slate-100'); el.classList.add('bg-gray-700'); });
-                    document.querySelectorAll('.bg-slate-200').forEach(el => { el.classList.remove('bg-slate-200'); el.classList.add('bg-gray-800'); });
-                    document.querySelectorAll('.text-slate-800').forEach(el => { el.classList.remove('text-slate-800'); el.classList.add('text-gray-200'); });
-                    document.querySelectorAll('.text-slate-700').forEach(el => { el.classList.remove('text-slate-700'); el.classList.add('text-gray-300'); });
-                    document.querySelectorAll('.nav-button:disabled').forEach(el => { el.classList.remove('bg-e2e8f0', 'text-94a3b8'); el.classList.add('bg-gray-700', 'text-gray-500'); });
-                    // Minimal change needed for topic switcher
-                    document.querySelector('#topic-switcher')?.classList.add('bg-gray-800', 'border-gray-600', 'text-gray-100');
+
+                    document.body.className = 'bg-gray-900 text-gray-100';
+
                 } else {
-                    document.querySelectorAll('.kb-card .bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-white'); });
-                    document.querySelectorAll('.text-gray-100').forEach(el => { el.classList.remove('text-gray-100'); el.classList.add('text-slate-900'); });
-                    document.querySelectorAll('.text-gray-300').forEach(el => { el.classList.remove('text-gray-300'); el.classList.add('text-slate-600'); });
-                    document.querySelectorAll('.bg-gray-700').forEach(el => { el.classList.remove('bg-gray-700'); el.classList.add('bg-slate-100'); });
-                    document.querySelectorAll('.bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-slate-200'); });
-                    document.querySelectorAll('.text-gray-200').forEach(el => { el.classList.remove('text-gray-200'); el.classList.add('text-slate-800'); });
-                    document.querySelectorAll('.nav-button:disabled').forEach(el => { el.classList.remove('bg-gray-700', 'text-gray-500'); el.classList.add('bg-e2e8f0', 'text-94a3b8'); });
-                     // Minimal change needed for topic switcher
-                    document.querySelector('#topic-switcher')?.classList.remove('bg-gray-800', 'border-gray-600', 'text-gray-100');
+
+                    document.body.className = 'bg-slate-50 text-slate-800';
+
                 }
+
+                
+
+                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg)); el.classList.add(theme.accentBg); });
+
+                document.querySelectorAll('.themable-accent-text').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentText)); el.classList.add(theme.accentText); });
+
+                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBgLight)); el.classList.add(theme.accentBgLight); });
+
+                document.querySelectorAll('.themable-accent-border').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBorder)); el.classList.add(theme.accentBorder); });
+
+
+
+                if (themeName === 'dark') {
+
+                    document.querySelectorAll('.kb-card .bg-white').forEach(el => { el.classList.remove('bg-white'); el.classList.add('bg-gray-800'); });
+
+                    document.querySelectorAll('.text-slate-900').forEach(el => { el.classList.remove('text-slate-900'); el.classList.add('text-gray-100'); });
+
+                    document.querySelectorAll('.text-slate-600').forEach(el => { el.classList.remove('text-slate-600'); el.classList.add('text-gray-300'); });
+
+                    document.querySelectorAll('.bg-slate-100').forEach(el => { el.classList.remove('bg-slate-100'); el.classList.add('bg-gray-700'); });
+
+                    document.querySelectorAll('.bg-slate-200').forEach(el => { el.classList.remove('bg-slate-200'); el.classList.add('bg-gray-800'); });
+
+                    document.querySelectorAll('.text-slate-800').forEach(el => { el.classList.remove('text-slate-800'); el.classList.add('text-gray-200'); });
+
+                    document.querySelectorAll('.text-slate-700').forEach(el => { el.classList.remove('text-slate-700'); el.classList.add('text-gray-300'); });
+
+                    document.querySelector('#topic-switcher')?.classList.add('bg-gray-800', 'border-gray-600', 'text-gray-100');
+
+                } else {
+
+                    document.querySelectorAll('.kb-card .bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-white'); });
+
+                    document.querySelectorAll('.text-gray-100').forEach(el => { el.classList.remove('text-gray-100'); el.classList.add('text-slate-900'); });
+
+                    document.querySelectorAll('.text-gray-300').forEach(el => { el.classList.remove('text-gray-300'); el.classList.add('text-slate-600'); });
+
+                    document.querySelectorAll('.bg-gray-700').forEach(el => { el.classList.remove('bg-gray-700'); el.classList.add('bg-slate-100'); });
+
+                    document.querySelectorAll('.bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-slate-200'); });
+
+                    document.querySelectorAll('.text-gray-200').forEach(el => { el.classList.remove('text-gray-200'); el.classList.add('text-slate-800'); });
+
+                    document.querySelector('#topic-switcher')?.classList.remove('bg-gray-800', 'border-gray-600', 'text-gray-100');
+
+                }
+
+
 
                 themeSwitcher.querySelectorAll('.theme-button').forEach(button => {
+
                     const buttonTheme = button.dataset.theme;
+
                     if (buttonTheme === themeName) {
+
                         button.classList.remove('inactive');
+
                         button.classList.add('active', themes[buttonTheme].accentBg);
+
                     } else {
+
                         button.classList.remove('active', ...Object.values(themes).map(t => t.accentBg));
+
                         button.classList.add('inactive');
+
                     }
+
                 });
-                
-                applyView(currentView);
+
             }
+
+
 
             // --- EVENT HANDLERS ---
+
             function handleTopicChange(e) {
+
                 currentTopicId = e.target.value;
+
                 renderApp();
+
             }
+
             
+
             themeSwitcher.addEventListener('click', (e) => { if (e.target.matches('.theme-button')) applyTheme(e.target.dataset.theme); });
-            uiSwitcher.addEventListener('click', (e) => { if (e.target.matches('.ui-button')) applyView(e.target.dataset.view); });
-            prevButton.addEventListener('click', () => goToPage(currentIndex - 1));
-            nextButton.addEventListener('click', () => goToPage(currentIndex + 1));
+
+
 
             // --- INITIALIZE ---
+
             async function initializeApp() {
+
                 try {
+
                     const response = await fetch('./data/content.json'); 
+
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
                     libraryData = await response.json();
+
                     
+
                     sortedTopicIds = Object.keys(libraryData).sort((a,b) => {
+
                         const orderA = libraryData[a].knowledgeBase.display_order || 0;
+
                         const orderB = libraryData[b].knowledgeBase.display_order || 0;
+
                         return orderA - orderB;
+
                     });
 
+
+
                     currentTopicId = sortedTopicIds[0];
+
                     renderApp();
+
                 } catch (error) {
+
                     console.error("Failed to load content:", error);
+
                     appContainer.innerHTML = `<div class="text-center p-8 bg-red-100 text-red-700 rounded-lg"><h3 class="font-bold text-lg">An error occurred</h3><p>Could not load content from ./data/content.json. Please ensure the file exists and is accessible.</p></div>`;
+
                 }
+
             }
+
             
+
             initializeApp();
+
         });
+
     </script>
+
 </body>
+
 </html>
