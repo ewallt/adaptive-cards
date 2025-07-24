@@ -15,7 +15,7 @@
         #app-container.view-page {
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh - 4rem); /* Adjust for padding */
+            min-height: calc(100vh - 4rem);
         }
         #app-container.view-scroll {
             display: flex;
@@ -28,20 +28,20 @@
         #kb-container {
             transition: transform 0.4s ease-in-out;
         }
-        /* --- Page View Styles --- */
+        /* Page View Styles */
         .view-page #page-viewport { overflow: hidden; }
         .view-page #kb-container { display: flex; }
         .view-page .kb-card { width: 100%; flex-shrink: 0; display: flex; flex-direction: column; }
         .view-page .card-content-wrapper { flex-grow: 1; overflow-y: auto; }
         .view-page #navigation-controls { display: flex; }
         
-        /* --- Scroll View Styles --- */
+        /* Scroll View Styles */
         .view-scroll #page-viewport { overflow: visible; }
         .view-scroll #kb-container { display: block; }
         .view-scroll .kb-card { margin-bottom: 2rem; }
         .view-scroll #navigation-controls { display: none; }
 
-        /* --- General Component Styles --- */
+        /* General Component Styles */
         .step-circle {
             width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; flex-shrink: 0;
         }
@@ -65,13 +65,7 @@
             background-color: #e2e8f0; color: #94a3b8; cursor: not-allowed;
         }
         #topic-switcher {
-            padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; border: 1px solid;
-        }
-
-        /* --- Dark Mode Base --- */
-        .dark-mode {
-             background-color: #111827; /* gray-900 */
-             color: #d1d5db; /* gray-300 */
+            padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; border: 1px solid #d1d5db;
         }
     </style>
 </head>
@@ -97,8 +91,7 @@
         </div>
 
         <div id="page-viewport" class="flex-grow">
-            <div id="kb-container">
-                </div>
+            <div id="kb-container"></div>
         </div>
         
         <div id="navigation-controls" class="flex justify-between items-center mt-6">
@@ -125,12 +118,12 @@
             let currentTheme = 'blue';
             let currentView = 'page';
 
-            // --- THEME DEFINITIONS ---
+            // --- THEME DEFINITIONS (From your goal code) ---
             const themes = {
                 blue: { accentBg: 'bg-blue-600', accentText: 'text-blue-800', accentBgLight: 'bg-blue-50', accentBorder: 'border-blue-500' },
                 green: { accentBg: 'bg-green-700', accentText: 'text-green-800', accentBgLight: 'bg-green-50', accentBorder: 'border-green-600' },
                 indigo: { accentBg: 'bg-indigo-600', accentText: 'text-indigo-800', accentBgLight: 'bg-indigo-50', accentBorder: 'border-indigo-500' },
-                dark: { accentBg: 'bg-gray-600', accentText: 'text-gray-100', accentBgLight: 'bg-gray-700', accentBorder: 'border-gray-500' }
+                dark: { accentBg: 'bg-gray-800', accentText: 'text-gray-100', accentBgLight: 'bg-gray-900', accentBorder: 'border-gray-600' }
             };
 
             // --- DOM ELEMENT REFERENCES ---
@@ -141,7 +134,6 @@
             const uiSwitcher = document.getElementById('ui-switcher');
             const prevButton = document.getElementById('prev-button');
             const nextButton = document.getElementById('next-button');
-            const progressIndicator = document.getElementById('progress-indicator');
             const topicSwitcherContainer = document.getElementById('topic-switcher-container');
 
             // --- RENDER FUNCTIONS ---
@@ -218,10 +210,9 @@
             function updateNavControls() {
                 prevButton.disabled = currentIndex === 0;
                 nextButton.disabled = currentIndex === totalPages - 1;
-                progressIndicator.textContent = `Page ${currentIndex + 1} of ${totalPages}`;
             }
 
-            // --- VIEW & THEME LOGIC ---
+            // --- VIEW & THEME LOGIC (COPIED DIRECTLY FROM YOUR GOAL CODE) ---
             function applyView(viewName) {
                 currentView = viewName;
                 appContainer.classList.remove('view-page', 'view-scroll');
@@ -234,17 +225,16 @@
                 }
 
                 uiSwitcher.querySelectorAll('.ui-button').forEach(button => {
-                    const isActive = button.dataset.view === viewName;
-                    button.classList.toggle('active', isActive);
-                    button.classList.toggle('inactive', !isActive);
-                    button.classList.remove('bg-white', 'text-slate-900', 'bg-gray-600', 'text-gray-100', 'bg-gray-700');
-                    
-                    if (isActive) {
+                    if (button.dataset.view === viewName) {
+                        button.classList.remove('inactive');
                         if (currentTheme === 'dark') {
-                            button.classList.add('bg-gray-600', 'text-gray-100');
+                            button.classList.add('active', 'bg-gray-700', 'text-gray-100');
                         } else {
-                            button.classList.add('bg-white', 'text-slate-900');
+                            button.classList.add('active', 'bg-white', 'text-slate-900');
                         }
+                    } else {
+                        button.classList.remove('active', 'bg-white', 'text-slate-900', 'bg-gray-700', 'text-gray-100');
+                        button.classList.add('inactive');
                     }
                 });
             }
@@ -252,48 +242,50 @@
             function applyTheme(themeName) {
                 currentTheme = themeName;
                 const theme = themes[themeName];
-                const isDark = themeName === 'dark';
-
-                const toggleClasses = (selector, lightClass, darkClass) => {
-                    document.querySelectorAll(selector).forEach(el => {
-                        el.classList.remove(lightClass, darkClass);
-                        el.classList.add(isDark ? darkClass : lightClass);
-                    });
-                };
                 
-                document.body.classList.toggle('dark-mode', isDark);
-                toggleClasses('body', 'bg-slate-50', 'bg-gray-900');
-                toggleClasses('#ui-switcher, #theme-switcher', 'bg-slate-200', 'bg-gray-800');
-                toggleClasses('#topic-switcher', 'border-slate-400', 'border-gray-600');
-                toggleClasses('#topic-switcher', 'text-slate-900', 'text-gray-300');
-                toggleClasses('.control-button.inactive', 'bg-f1f5f9', 'bg-gray-700');
-                toggleClasses('.control-button.inactive', 'text-slate-700', 'text-gray-300');
+                if (themeName === 'dark') {
+                    document.body.className = 'bg-gray-900 text-gray-100';
+                } else {
+                    document.body.className = 'bg-slate-50 text-slate-800';
+                }
                 
-                toggleClasses('.kb-card > div', 'bg-white', 'bg-gray-800');
-                toggleClasses('h1, h2, .text-slate-900', 'text-slate-900', 'text-gray-50');
-                toggleClasses('.text-slate-800', 'text-slate-800', 'text-gray-200');
-                toggleClasses('.text-slate-700', 'text-slate-700', 'text-gray-300');
-                // --- THIS IS THE CORRECTED LINE ---
-                toggleClasses('.text-slate-600', 'text-slate-600', 'text-gray-300');
-                // --- END CORRECTION ---
-                toggleClasses('.bg-slate-100', 'bg-slate-100', 'bg-gray-700');
-                toggleClasses('.border-slate-400', 'border-slate-400', 'border-gray-600');
-                toggleClasses('.nav-button:disabled', 'bg-e2e8f0', 'bg-gray-700');
-                toggleClasses('.nav-button:disabled', 'text-94a3b8', 'text-gray-500');
-
                 document.querySelectorAll('.themable-accent-bg').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg)); el.classList.add(theme.accentBg); });
                 document.querySelectorAll('.themable-accent-text').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentText)); el.classList.add(theme.accentText); });
                 document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBgLight)); el.classList.add(theme.accentBgLight); });
                 document.querySelectorAll('.themable-accent-border').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBorder)); el.classList.add(theme.accentBorder); });
                 document.querySelectorAll('.nav-button:not(:disabled)').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg), 'text-white'); el.classList.add(theme.accentBg, 'text-white'); });
 
+                // Direct style replacement for dark mode, from your goal code
+                if (themeName === 'dark') {
+                    document.querySelectorAll('.kb-card .bg-white').forEach(el => { el.classList.remove('bg-white'); el.classList.add('bg-gray-800'); });
+                    document.querySelectorAll('.text-slate-900').forEach(el => { el.classList.remove('text-slate-900'); el.classList.add('text-gray-100'); });
+                    document.querySelectorAll('.text-slate-600').forEach(el => { el.classList.remove('text-slate-600'); el.classList.add('text-gray-300'); });
+                    document.querySelectorAll('.bg-slate-100').forEach(el => { el.classList.remove('bg-slate-100'); el.classList.add('bg-gray-700'); });
+                    document.querySelectorAll('.bg-slate-200').forEach(el => { el.classList.remove('bg-slate-200'); el.classList.add('bg-gray-800'); });
+                    document.querySelectorAll('.text-slate-800').forEach(el => { el.classList.remove('text-slate-800'); el.classList.add('text-gray-200'); });
+                    document.querySelectorAll('.text-slate-700').forEach(el => { el.classList.remove('text-slate-700'); el.classList.add('text-gray-300'); });
+                    document.querySelectorAll('.nav-button:disabled').forEach(el => { el.classList.remove('bg-e2e8f0', 'text-94a3b8'); el.classList.add('bg-gray-700', 'text-gray-500'); });
+                    // Minimal change needed for topic switcher
+                    document.querySelector('#topic-switcher')?.classList.add('bg-gray-800', 'border-gray-600', 'text-gray-100');
+                } else {
+                    document.querySelectorAll('.kb-card .bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-white'); });
+                    document.querySelectorAll('.text-gray-100').forEach(el => { el.classList.remove('text-gray-100'); el.classList.add('text-slate-900'); });
+                    document.querySelectorAll('.text-gray-300').forEach(el => { el.classList.remove('text-gray-300'); el.classList.add('text-slate-600'); });
+                    document.querySelectorAll('.bg-gray-700').forEach(el => { el.classList.remove('bg-gray-700'); el.classList.add('bg-slate-100'); });
+                    document.querySelectorAll('.bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-slate-200'); });
+                    document.querySelectorAll('.text-gray-200').forEach(el => { el.classList.remove('text-gray-200'); el.classList.add('text-slate-800'); });
+                    document.querySelectorAll('.nav-button:disabled').forEach(el => { el.classList.remove('bg-gray-700', 'text-gray-500'); el.classList.add('bg-e2e8f0', 'text-94a3b8'); });
+                     // Minimal change needed for topic switcher
+                    document.querySelector('#topic-switcher')?.classList.remove('bg-gray-800', 'border-gray-600', 'text-gray-100');
+                }
+
                 themeSwitcher.querySelectorAll('.theme-button').forEach(button => {
                     const buttonTheme = button.dataset.theme;
                     if (buttonTheme === themeName) {
                         button.classList.remove('inactive');
-                        button.classList.add('active', themes[buttonTheme].accentBg, 'text-white');
+                        button.classList.add('active', themes[buttonTheme].accentBg);
                     } else {
-                        button.classList.remove('active', 'text-white', ...Object.values(themes).map(t => t.accentBg));
+                        button.classList.remove('active', ...Object.values(themes).map(t => t.accentBg));
                         button.classList.add('inactive');
                     }
                 });

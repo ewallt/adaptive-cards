@@ -1,0 +1,100 @@
+{
+  "knowledgeBase": {
+    "display_order": 10,
+    "id": "kb-teach-us-to-pray-01",
+    "pageTitle": "On the Manner of Prayer: 'Lord, Teach Us to Pray'",
+    "title": "Lord, Teach Us to Pray",
+    "summary": "An exploration of the context in which the Lord's Prayer was given, revealing the disciples' deep need and Christ's ideal of prayer as a source of divine power and peace.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-23T19:17:00-06:00",
+    "entryPoints": [
+      {
+        "id": "prayer-01-context",
+        "step": 1,
+        "title": "The Prayer Given Twice",
+        "corePrinciple": "The Lord's Prayer was given on two separate occasions, first publicly to the multitudes and later privately to the disciples.",
+        "development": "Our Saviour gave the prayer on two distinct occasions. The first was during the Sermon on the Mount, delivered to the great multitude. Some months later, after His disciples had been away from Him, they returned to find Him absorbed in communion with God. It was in response to their request on this second occasion that He repeated the prayer, emphasizing its deep and unfathomed meaning.",
+        "scriptureReferences": [
+          {
+            "citation": "Matthew 6:9",
+            "text": "After this manner therefore pray ye.",
+            "relevance": "The first instance where the prayer was taught to the crowds as part of the Sermon on the Mount."
+          }
+        ],
+        "keyQuote": "The Lord's Prayer was twice given by our Saviour, first to the multitude in the Sermon on the Mount, and again, some months later, to the disciples alone.",
+        "tags": [
+          "Lord's Prayer",
+          "context",
+          "Sermon on the Mount",
+          "disciples"
+        ]
+      },
+      {
+        "id": "prayer-02-observation",
+        "step": 2,
+        "title": "The Source of Christ's Power",
+        "corePrinciple": "The disciples connected Christ's hours of solitary prayer with the peace and power evident in His life and ministry.",
+        "development": "The disciples had often observed Jesus spending long hours in solitude, communing with His Father. His days were filled with incessant labor, ministering to crowds and debating with the rabbis, leaving Him utterly wearied. Yet when He returned from these hours of prayer, they marked the look of peace on His face and the sense of refreshment that pervaded His presence. They came to understand that His divine power and heavenly wisdom were a direct result of this communion.",
+        "scriptureReferences": [
+           {
+            "citation": "Mark 1:35",
+            "text": "And in the morning, rising up a great while before day, he went out, and departed into a solitary place, and there prayed.",
+            "relevance": "A biblical example of the habit of solitary prayer that the disciples observed."
+          }
+        ],
+        "keyQuote": "It was from hours spent with God that He came forth, morning by morning, to bring the light of heaven to men. The disciples had come to connect His hours of prayer with the power of His words and works.",
+        "tags": [
+          "prayer",
+          "power",
+          "peace",
+          "communion",
+          "solitude"
+        ]
+      },
+      {
+        "id": "prayer-03-request",
+        "step": 3,
+        "title": "The Humble Request",
+        "corePrinciple": "Awed by Christ's communion with God, the disciples were humbled with a conviction of their own deep spiritual need.",
+        "development": "On returning to their Lord, the disciples found Him praying aloud, His face irradiated with a celestial brightness as if in the very presence of the Unseen. As they listened, their hearts were deeply moved, awed, and humbled. When He finished, it was not with academic curiosity, but with a profound conviction of their own spiritual need that they made their request. They saw the source of their Master's strength and realized they lacked it.",
+        "scriptureReferences": [
+           {
+            "citation": "Luke 11:1",
+            "text": "Lord, teach us to pray.",
+            "relevance": "The direct, heartfelt plea from the disciples, born out of a sense of deep need."
+          }
+        ],
+        "keyQuote": "Now, as they listened to His supplication, their hearts were awed and humbled. As He ceased praying, it was with a conviction of their own deep need that they exclaimed, 'Lord, teach us to pray.'",
+        "tags": [
+          "humility",
+          "need",
+          "awe",
+          "disciples",
+          "supplication"
+        ]
+      },
+      {
+        "id": "prayer-04-ideal",
+        "step": 4,
+        "title": "A Principle, Not a Formula",
+        "corePrinciple": "The Lord's Prayer is not a rigid formula to be repeated, but Christ's own ideal of prayer—simple, comprehensive, and based on relationship.",
+        "development": "In response, Jesus gave them no new form of prayer, but repeated what He had taught before, emphasizing that its meaning was deeper than they had yet understood. He did not restrict us to the use of these exact words. As one with humanity, He presented His own ideal of prayer. The words are simple enough for a child, yet so comprehensive that their significance can never be fully grasped by the greatest minds. It teaches us the essential elements of true prayer: thanksgiving, petition, confession, and claiming God's mercy according to His promise.",
+        "scriptureReferences": [
+           {
+            "citation": "Matthew 6:7",
+            "text": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking.",
+            "relevance": "Reinforces that prayer is about sincere communication, not the recitation of a formula."
+          }
+        ],
+        "keyQuote": "As one with humanity, He presents His own ideal of prayer, words so simple that they may be adopted by the little child, yet so comprehensive that their significance can never be fully grasped by the greatest minds.",
+        "tags": [
+          "ideal",
+          "principle",
+          "thanksgiving",
+          "confession",
+        "mercy"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "knowledgeBase": {
+    "display_order": 30,
+    "id": "kb-hallowed-name-01",
+    "pageTitle": "On the Petition: 'Hallowed Be Thy Name'",
+    "title": "On the Petition: 'Hallowed Be Thy Name'",
+    "summary": "A detailed examination of what it means to hallow God's name, moving from outward reverence in speech to the inward representation of His character in our daily lives.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-23T19:11:00-06:00",
+    "entryPoints": [
+      {
+        "id": "hallowed-01-reverence",
+        "step": 1,
+        "title": "The Foundation: Reverence in Speech and Worship",
+        "corePrinciple": "Hallowing God's name begins with showing solemn reverence for His titles and approaching Him with holy awe.",
+        "development": "To hallow the name of the Lord requires that the words we use to speak of the Supreme Being be uttered with reverence. We are never to treat the titles or appellations of the Deity lightly. When we enter into prayer, we are in the audience chamber of the Most High and should come before Him with holy awe. The angels themselves veil their faces in His presence. How much more should we, as finite, sinful beings, come in a reverent manner before our Maker.",
+        "scriptureReferences": [
+          {
+            "citation": "Psalm 111:9",
+            "text": "Holy and reverend is His name.",
+            "relevance": "Establishes the holy nature of God's name and the reverence it deserves."
+          }
+        ],
+        "keyQuote": "The angels veil their faces in His presence. The cherubim and the bright and holy seraphim approach His throne with solemn reverence. How much more should we... come in a reverent manner before the Lord, our Maker!",
+        "tags": [
+          "reverence",
+          "awe",
+          "worship",
+          "prayer",
+          "holiness"
+        ]
+      },
+      {
+        "id": "hallowed-02-character",
+        "step": 2,
+        "title": "The Deeper Meaning: Possessing His Character",
+        "corePrinciple": "To truly hallow God's name means much more than outward reverence; it means representing His character to the world.",
+        "development": "We may, like the Jews in Christ's day, show great outward reverence yet continually profane God's name. This is because 'the name of the Lord' is a representation of His character: merciful, gracious, and truthful. When we are called by His name as His children, we become His representatives. The prayer 'Hallowed be Thy name' is therefore a request that His name be hallowed *in us*. In every act of our lives, we are called upon to make His name manifest by possessing His character.",
+        "scriptureReferences": [
+          {
+            "citation": "Exodus 34:5-7",
+            "text": "(Paraphrased) The Lord is 'merciful and gracious, long-suffering, and abundant in goodness and truth, ... forgiving iniquity and transgression and sin.'",
+            "relevance": "Defines the 'name' or character of God that we are called to represent."
+          },
+          {
+            "citation": "Jeremiah 33:16",
+            "text": "This is the name wherewith she shall be called, The Lord our Righteousness.",
+            "relevance": "Shows that God's own name—His character of righteousness—is put upon His people."
+          }
+        ],
+        "keyQuote": "In every act of life you are to make manifest the name of God. This petition calls upon you to possess His character.",
+        "tags": [
+          "character",
+          "representation",
+          "heritage",
+          "righteousness",
+          "truth"
+        ]
+      },
+      {
+        "id": "hallowed-03-method",
+        "step": 3,
+        "title": "The Method: How to Represent God",
+        "corePrinciple": "We can only represent God's character and truly hallow His name by accepting the grace and righteousness of Christ.",
+        "development": "We cannot hallow God's name or represent Him to the world through our own efforts. The only way our lives and characters can represent the very life and character of God is through the acceptance of the grace and righteousness of Christ. God sends us into the world as His representatives, and when we pray for His name to be hallowed in us, we are asking that we do no dishonor to the 'worthy name' by which we are called. This is made possible not by our own power, but by receiving the transformative grace of Christ.",
+        "scriptureReferences": [
+          {
+            "citation": "James 2:7",
+            "text": "Do not they blaspheme that worthy name by the which ye are called?",
+            "relevance": "Connects our actions to the honor or dishonor of the 'worthy name' we carry as Christians."
+          }
+        ],
+        "keyQuote": "You cannot hallow His name, you cannot represent Him to the world, unless in life and character you represent the very life and character of God. This you can do only through the acceptance of the grace and righteousness of Christ.",
+        "tags": [
+          "grace",
+          "Christ",
+          "righteousness",
+          "character",
+          "transformation"
+        ]
+      }
+    ]
+  }
+}

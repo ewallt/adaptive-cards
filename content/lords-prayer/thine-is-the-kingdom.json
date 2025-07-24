@@ -1,0 +1,101 @@
+{
+  "knowledgeBase": {
+    "display_order": 90,
+    "id": "kb-doxology-01",
+    "pageTitle": "On the Doxology: 'Thine is the Kingdom'",
+    "title": "On the Doxology: 'Thine is the Kingdom'",
+    "summary": "An exploration of the prayer's concluding doxology, which points believers to God's ultimate sovereignty and care, offering assurance that His kingdom, power, and glory rule over all, even in times of global crisis and strife.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-23T19:29:00-06:00",
+    "entryPoints": [
+      {
+        "id": "doxology-01-anchor",
+        "step": 1,
+        "title": "An Anchor in Coming Storms",
+        "corePrinciple": "The doxology directs believers to look above the power of evil to God, whose kingdom rules over all, even in the face of future trials.",
+        "development": "The last sentence of the Lord's Prayer, like the first, points to our Father as being above all power and authority. The Saviour saw the years ahead for His disciples not as times of peace, but as dark with tempests of hatred and wrath. Amid national strife and ruin, their steps would be beset with perils. Yet, Christ's followers were not to fear that their hope was lost or that God had forsaken the earth. The power and the glory belong to Him, whose great purposes move on unthwarted.",
+        "scriptureReferences": [
+          {
+            "citation": "Matthew 24:6-8",
+            "text": "Ye shall hear of wars and rumors of wars... Nation shall rise against nation, and kingdom against kingdom: and there shall be famines, and pestilences, and earthquakes, in divers places. All these are the beginning of sorrows.",
+            "relevance": "Describes the future trials that Christ's followers were told not to fear, as God's purposes would move on unthwarted."
+          }
+        ],
+        "keyQuote": "In the prayer that breathes their daily wants, the disciples of Christ were directed to look above all the power and dominion of evil, unto the Lord their God, whose kingdom ruleth over all and who is their Father and everlasting Friend.",
+        "tags": [
+          "sovereignty",
+          "assurance",
+          "hope",
+          "trials",
+          "fearlessness"
+        ]
+      },
+      {
+        "id": "doxology-02-ruler",
+        "step": 2,
+        "title": "The Sovereign Ruler of Nations",
+        "corePrinciple": "God is in complete control of world events; the destiny of nations and the concerns of His church are in His hands.",
+        "development": "The ruin of Jerusalem was a symbol of the final ruin that will overwhelm the world, and the prophecies of that time apply directly to the last days. We are now on the threshold of great and solemn events, a crisis such as the world has never witnessed. Yet, the assurance remains that God's kingdom rules over all. The program of coming events is in the hands of our Maker. The Majesty of heaven has the destiny of nations, as well as the concerns of His church, in His own charge.",
+        "scriptureReferences": [
+          {
+            "citation": "Isaiah 45:5",
+            "text": "I girded thee, though thou hast not known Me.",
+            "relevance": "An example of God's sovereign control over world leaders and events, even when they are unaware of His hand."
+          }
+        ],
+        "keyQuote": "The program of coming events is in the hands of our Maker. The Majesty of heaven has the destiny of nations, as well as the concerns of His church, in His own charge.",
+        "tags": [
+          "destiny",
+          "nations",
+          "control",
+          "prophecy",
+          "crisis"
+        ]
+      },
+      {
+        "id": "doxology-03-divine-power",
+        "step": 3,
+        "title": "The Unseen Hand of Divine Power",
+        "corePrinciple": "God's divine power is constantly at work to accomplish His designs, thwart the plans of evil, and give success to His servants.",
+        "development": "The prophet Ezekiel's vision of a hand beneath the wings of the cherubim teaches us that it is divine power that gives God's servants success. We are not left to carry the burden of responsibility alone. He who never slumbers is continually at work to accomplish His designs. He will thwart the purposes of wicked men and bring to confusion the counsels of those who plot mischief against His people. The King, the Lord of hosts, sits between the cherubim and guards His children still.",
+        "scriptureReferences": [
+          {
+            "citation": "Ezekiel 1:8",
+            "text": "And they had the hands of a man under their wings on their four sides...",
+            "relevance": "The source of the imagery used to teach that God's power is actively at work, guiding events."
+          }
+        ],
+        "keyQuote": "He who slumbers not, who is continually at work for the accomplishment of His designs, will carry forward His own work. He will thwart the purposes of wicked men, and will bring to confusion the counsels of those who plot mischief against His people.",
+        "tags": [
+          "divine power",
+          "providence",
+          "protection",
+          "success",
+          "responsibility"
+        ]
+      },
+      {
+        "id": "doxology-04-safety",
+        "step": 4,
+        "title": "An Unshakable Security",
+        "corePrinciple": "Amid the strife and tumult of nations, God guards His children, and they will be safe in His hands.",
+        "development": "He who rules in the heavens is our Saviour. He measures every trial and watches the furnace fire that must test every soul. When the strongholds of kings are overthrown, when the arrows of wrath strike through the hearts of His enemies, His people will be safe in His hands. In His hand is power and might, and it is in His hand to make great and to give strength to all.",
+        "scriptureReferences": [
+          {
+            "citation": "1 Chronicles 29:11, 12",
+            "text": "Thine, O Lord, is the greatness, and the power, and the glory, and the victory, and the majesty: for all that is in the heaven and in the earth is Thine.... In Thine hand is power and might; and in Thine hand it is to make great, and to give strength unto all.",
+            "relevance": "A powerful doxology that affirms God's ultimate power, glory, and ability to strengthen His people."
+          }
+        ],
+        "keyQuote": "When the strongholds of kings shall be overthrown, when the arrows of wrath shall strike through the hearts of His enemies, His people will be safe in His hands.",
+        "tags": [
+          "safety",
+          "security",
+          "refuge",
+          "strength",
+          "tumult"
+        ]
+      }
+    ]
+  }
+}

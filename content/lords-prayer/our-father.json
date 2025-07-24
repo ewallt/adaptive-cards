@@ -1,0 +1,111 @@
+{
+  "knowledgeBase": {
+    "display_order": 20,
+    "id": "kb-our-father-01",
+    "pageTitle": "On the Petition: 'Our Father'",
+    "title": "On the Petition: 'Our Father'",
+    "summary": "An exploration of the profound truth that we are welcomed into God's family, what this divine relationship means for our identity and security, and the responsibilities it places upon us.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-23T19:21:00-06:00",
+    "entryPoints": [
+      {
+        "id": "father-01-assurance",
+        "step": 1,
+        "title": "The Assurance of Our Divine Relationship",
+        "corePrinciple": "The first words of the prayer, 'Our Father,' are a divinely given assurance that we are welcomed as members of God's family.",
+        "development": "Jesus teaches us to call His Father our Father. He is not ashamed to call us brethren. So ready and eager is the Saviour's heart to welcome us that in the very first words we use in approaching God, He places the assurance of our divine relationship. This is an announcement of the wonderful truth, full of encouragement and comfort, that God loves us as He loves His Son.",
+        "scriptureReferences": [
+          {
+            "citation": "Hebrews 2:11",
+            "text": "He is not ashamed to call them brethren.",
+            "relevance": "Shows Christ's eagerness to welcome us into the family of God."
+          },
+          {
+            "citation": "John 17:23",
+            "text": "Thou 'hast loved them, as Thou hast loved Me.'",
+            "relevance": "Christ's own testimony to the Father's love for believers."
+          }
+        ],
+        "keyQuote": "So ready, so eager, is the Saviour's heart to welcome us as members of the family of God, that in the very first words we are to use in approaching God He places the assurance of our divine relationship, “Our Father.”",
+        "tags": [
+          "assurance",
+          "relationship",
+          "family of God",
+          "love",
+          "welcome"
+        ]
+      },
+      {
+        "id": "father-02-identity",
+        "step": 2,
+        "title": "Our New Identity: Heirs, Not Orphans",
+        "corePrinciple": "By accepting Christ as our personal Saviour, we are adopted as children of God and are no longer orphans left to bear the burden of our sins.",
+        "development": "It was in behalf of those who had transgressed the law that Jesus took upon Him human nature; He became like us that we might have everlasting peace and assurance. How can we ever be in doubt and feel that we are orphans? We have an Advocate in the heavens, and whoever accepts Him is not left to bear the burden of his own sins. The very first step in approaching God is to know and believe the love that He has for us, for it is this love that leads us to Him.",
+        "scriptureReferences": [
+          {
+            "citation": "1 John 3:2",
+            "text": "Beloved, now are we the sons of God... we know that, when He shall appear, we shall be like Him; for we shall see Him as He is.",
+            "relevance": "Confirms our present status as God's children and our future hope."
+          },
+          {
+            "citation": "Romans 8:17",
+            "text": "And if children, then heirs; heirs of God, and joint heirs with Christ...",
+            "relevance": "Explains the inheritance and privilege that comes with being a child of God."
+          }
+        ],
+        "keyQuote": "We have an Advocate in the heavens, and whoever accepts Him as a personal Saviour is not left an orphan to bear the burden of his own sins.",
+        "tags": [
+          "identity",
+          "adoption",
+          "heirs",
+          "assurance",
+          "advocate"
+        ]
+      },
+      {
+        "id": "father-03-responsibility",
+        "step": 3,
+        "title": "The Responsibility to Our Brethren",
+        "corePrinciple": "In calling God 'Our Father,' we recognize all of His children as our brethren and must include them in our prayers and concerns.",
+        "development": "The perception of God's love works the renunciation of selfishness. When we call God our Father, we recognize all His children as our brethren. We are all a part of the great web of humanity, all members of one family. In our petitions we are to include our neighbors as well as ourselves. No one prays aright who seeks a blessing for himself alone. The infinite God listens to every prayer and tastes the sorrows of every soul; He regards the treatment given to every member of the human family.",
+        "scriptureReferences": [
+          {
+            "citation": "1 John 4:16",
+            "text": "And we have known and believed the love that God hath to us. God is love; and he that dwelleth in love dwelleth in God, and God in him.",
+            "relevance": "Highlights that knowing and believing God's love is the foundation for loving others."
+          }
+        ],
+        "keyQuote": "In our petitions we are to include our neighbors as well as ourselves. No one prays aright who seeks a blessing for himself alone.",
+        "tags": [
+          "responsibility",
+          "brethren",
+          "family",
+          "neighbors",
+          "selfishness"
+        ]
+      },
+      {
+        "id": "father-04-sonship",
+        "step": 4,
+        "title": "The Joyful Duty of Sonship",
+        "corePrinciple": "If we call God our Father, we joyfully acknowledge ourselves as His children, accepting His plan and making His honor our highest interest.",
+        "development": "When you call God your Father, you acknowledge yourselves as His children, to be guided by His wisdom and to be obedient in all things, knowing that His love is changeless. You will accept His plan for your life. As children of God, you will hold His honor, His character, His family, and His work as the objects of your highest interest. It will be your joy to recognize your relation to your Father and to every member of His family, and you will rejoice to do any act, however humble, that will tend to His glory or to the well-being of your kindred.",
+        "scriptureReferences": [
+          {
+            "citation": "Psalm 56:3",
+            "text": "What time I am afraid, I will trust in Thee.",
+            "relevance": "An expression of the trust a child places in their heavenly Father's care."
+          }
+        ],
+        "keyQuote": "As children of God, you will hold His honor, His character, His family, His work, as the objects of your highest interest.",
+        "tags": [
+          "sonship",
+          "obedience",
+          "joy",
+          "honor",
+          "glory"
+        ]
+      }
+    ]
+  }
+}

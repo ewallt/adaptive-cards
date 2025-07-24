@@ -1,0 +1,89 @@
+{
+  "knowledgeBase": {
+    "display_order": 40,
+    "id": "kb-kingdom-come-01",
+    "pageTitle": "On the Petition: 'Thy Kingdom Come'",
+    "title": "On the Petition: 'Thy Kingdom Come'",
+    "summary": "An analysis of the prayer for God's kingdom, distinguishing between the present kingdom of grace being established in human hearts and the future kingdom of glory to be fully realized at Christ's second coming.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-23T19:22:00-06:00",
+    "entryPoints": [
+      {
+        "id": "kingdom-01-assurance",
+        "step": 1,
+        "title": "A Future Hope and Present Assurance",
+        "corePrinciple": "The prayer for the kingdom is an assurance that, while it is a future event, its coming is certain in God's own time.",
+        "development": "God is our Father, but He is also the great King of the universe. The interests of His kingdom are our interests. When Jesus taught this prayer, the disciples were looking for an immediate, glorious kingdom. Jesus corrected this by teaching them to pray for it as an event yet future. This was not a disappointment, but an assurance. While they would not see the kingdom in their day, the fact that Jesus instructed them to pray for it is evidence that it will surely come at the time God has appointed.",
+        "scriptureReferences": [
+          {
+            "citation": "Matthew 6:10",
+            "text": "Thy kingdom come.",
+            "relevance": "The direct petition taught by Christ, affirming the kingdom as a central hope for believers."
+          }
+        ],
+        "keyQuote": "While they were not to behold the coming of the kingdom in their day, the fact that Jesus bade them pray for it is evidence that in God's own time it will surely come.",
+        "tags": [
+          "kingdom",
+          "future hope",
+          "assurance",
+          "certainty",
+          "God's timing"
+        ]
+      },
+      {
+        "id": "kingdom-02-two-kingdoms",
+        "step": 2,
+        "title": "The Kingdom of Grace and of Glory",
+        "corePrinciple": "There are two phases of God's kingdom: the kingdom of grace, which is being established now in human hearts, and the kingdom of glory, which will be established at Christ's return.",
+        "development": "The kingdom of God's grace is being established now, day by day, as hearts that were once full of sin and rebellion yield to the sovereignty of His love. This is the inward, spiritual kingdom. However, the full establishment of the kingdom of His glory will not take place until the second coming of Christ to this world. At that time, the saints will inherit the kingdom prepared for them from the foundation of the world, and Christ will take His great power and reign as King of kings.",
+        "scriptureReferences": [
+          {
+            "citation": "Daniel 7:27",
+            "text": "The kingdom and dominion, and the greatness of the kingdom under the whole heaven, shall be given to the people of the saints of the Most High.",
+            "relevance": "Prophetically describes the establishment of the kingdom of glory."
+          },
+          {
+            "citation": "Zechariah 14:9",
+            "text": "And the Lord shall be king over all the earth: in that day shall there be one Lord, and His name one.",
+            "relevance": "A prophecy of the final, visible reign of God in the kingdom of glory."
+          }
+        ],
+        "keyQuote": "The kingdom of God's grace is now being established, as day by day hearts that have been full of sin and rebellion yield to the sovereignty of His love. But the full establishment of the kingdom of His glory will not take place until the second coming of Christ.",
+        "tags": [
+          "kingdom of grace",
+          "kingdom of glory",
+          "second coming",
+          "inheritance",
+          "reign of Christ"
+        ]
+      },
+      {
+        "id": "kingdom-03-our-role",
+        "step": 3,
+        "title": "Our Role in Hastening the Kingdom",
+        "corePrinciple": "We hasten the coming of the kingdom by giving ourselves to God and winning other souls to Him through the preaching of the gospel.",
+        "development": "Before His glorious return, Jesus said, 'This gospel of the kingdom shall be preached in all the world for a witness unto all nations.' Therefore, His kingdom will not come until the good tidings of His grace have been carried to all the earth. As we give ourselves to God and win other souls to Him, we are actively hastening the coming of His kingdom. The prayer 'Thy kingdom come' is prayed with sincerity only by those who devote themselves to His service.",
+        "scriptureReferences": [
+          {
+            "citation": "Matthew 24:14",
+            "text": "This gospel of the kingdom shall be preached in all the world for a witness unto all nations; and then shall the end come.",
+            "relevance": "Establishes the preaching of the gospel as the final prerequisite for the kingdom's coming."
+          },
+          {
+            "citation": "Isaiah 6:8",
+            "text": "Here am I; send me.",
+            "relevance": "The response of one who is devoted to God's service and is willing to spread the gospel."
+          }
+        ],
+        "keyQuote": "Hence, as we give ourselves to God, and win other souls to Him, we hasten the coming of His kingdom.",
+        "tags": [
+          "gospel",
+          "evangelism",
+          "service",
+          "hastening",
+          "witness"
+        ]
+      }
+    ]
+  }
+}
