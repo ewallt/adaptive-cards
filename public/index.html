@@ -83,27 +83,47 @@
             const librarySwitcherContainer = document.getElementById('library-switcher-container');
             const topicSwitcherContainer = document.getElementById('topic-switcher-container');
 
+            // --- DETECTION FUNCTION ---
+            function looksLikeKnowledgeBaseFormat(obj) {
+                // Check if this looks like a Knowledge Base topic object
+                return obj && typeof obj === 'object' && 
+                       obj.knowledgeBase && 
+                       obj.knowledgeBase.entryPoints;
+            }
+
             // --- RENDER FUNCTIONS ---
             function renderApp() {
                 if (!masterLibrary || !currentLibraryId) return;
                 const currentLibrary = masterLibrary[currentLibraryId];
                 if (!currentLibrary) return;
-                sortedTopicIds = Object.keys(currentLibrary).sort((a, b) => (currentLibrary[a].knowledgeBase.display_order || 0) - (currentLibrary[b].knowledgeBase.display_order || 0));
+                
+                sortedTopicIds = Object.keys(currentLibrary).sort((a, b) => {
+                    const orderA = currentLibrary[a].knowledgeBase?.display_order || 0;
+                    const orderB = currentLibrary[b].knowledgeBase?.display_order || 0;
+                    return orderA - orderB;
+                });
+                
                 if (!currentTopicId || !currentLibrary[currentTopicId]) {
                     currentTopicId = sortedTopicIds[0];
                 }
+                
                 const topicData = currentLibrary[currentTopicId].knowledgeBase;
                 if (!topicData) return;
-                document.title = topicData.pageTitle || 'Knowledge Base';
-                mainTitleEl.textContent = topicData.title;
+                
+                document.title = topicData.pageTitle || topicData.title || 'Knowledge Base';
+                mainTitleEl.textContent = topicData.title || 'Knowledge Base';
 
                 buildLibrarySwitcher();
                 buildTopicSwitcher();
                 renderContent(topicData);
             }
 
-            // --- RESTORED THIS FUNCTION ---
             function buildLibrarySwitcher() {
+                if (!sortedLibraryIds || sortedLibraryIds.length <= 1) {
+                    librarySwitcherContainer.innerHTML = '';
+                    return;
+                }
+                
                 let html = '<select id="library-switcher" class="library-switcher dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100">';
                 sortedLibraryIds.forEach(libraryId => {
                     const displayName = libraryId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -129,6 +149,8 @@
             
             function renderContent(topicData) {
                 container.innerHTML = '';
+                if (!topicData.entryPoints) return;
+                
                 topicData.entryPoints.sort((a,b) => a.step - b.step).forEach(entry => {
                     const cardHTML = `
                         <div class="kb-card p-2">
@@ -169,10 +191,18 @@
                 } else {
                     document.documentElement.classList.remove('dark');
                 }
-                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.className = el.className.replace(/bg-\w+-\d+/g, '') + ' ' + theme.accentBg; });
-                document.querySelectorAll('.themable-accent-text').forEach(el => { el.className = el.className.replace(/text-\w+-\d+/g, '') + ' ' + theme.accentText; });
-                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.className = el.className.replace(/bg-\w+-\d+/g, '') + ' ' + theme.accentBgLight; });
-                document.querySelectorAll('.themable-accent-border').forEach(el => { el.className = el.className.replace(/border-\w+-\d+/g, '') + ' ' + theme.accentBorder; });
+                document.querySelectorAll('.themable-accent-bg').forEach(el => { 
+                    el.className = el.className.replace(/bg-\w+-\d+/g, '') + ' ' + theme.accentBg; 
+                });
+                document.querySelectorAll('.themable-accent-text').forEach(el => { 
+                    el.className = el.className.replace(/text-\w+-\d+/g, '') + ' ' + theme.accentText; 
+                });
+                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { 
+                    el.className = el.className.replace(/bg-\w+-\d+/g, '') + ' ' + theme.accentBgLight; 
+                });
+                document.querySelectorAll('.themable-accent-border').forEach(el => { 
+                    el.className = el.className.replace(/border-\w+-\d+/g, '') + ' ' + theme.accentBorder; 
+                });
                 themeSwitcher.querySelectorAll('.theme-button').forEach(button => {
                     const buttonTheme = button.dataset.theme;
                     button.classList.remove('active', ...Object.values(themes).map(t => t.accentBg));
@@ -185,9 +215,9 @@
             }
 
             // --- EVENT HANDLERS ---
-            // --- RESTORED THIS FUNCTION ---
             function handleLibraryChange(e) {
                 currentLibraryId = e.target.value;
+                localStorage.setItem('knowledgeBaseLibraryId', currentLibraryId);
                 currentTopicId = null; 
                 renderApp();
             }
@@ -208,11 +238,31 @@
                 try {
                     const savedTheme = localStorage.getItem('knowledgeBaseTheme') || 'blue';
                     applyThemeAccentColors(savedTheme);
+                    
                     const response = await fetch('./data/content.json'); 
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    masterLibrary = await response.json();
-                    sortedLibraryIds = Object.keys(masterLibrary).sort();
-                    currentLibraryId = sortedLibraryIds[0];
+                    const raw = await response.json();
+
+                    // Detect if this is single library (Knowledge Base format) or multi-library
+                    const topKeys = Object.keys(raw);
+                    if (topKeys.length === 0) throw new Error('content.json is empty.');
+
+                    const firstVal = raw[topKeys[0]];
+                    const isSingleLibrary = looksLikeKnowledgeBaseFormat(firstVal);
+
+                    if (isSingleLibrary) {
+                        // Single library mode - wrap in a container
+                        masterLibrary = { 'default': raw };
+                        sortedLibraryIds = ['default'];
+                        currentLibraryId = 'default';
+                    } else {
+                        // Multi-library mode
+                        masterLibrary = raw;
+                        sortedLibraryIds = Object.keys(masterLibrary).sort();
+                        const savedLib = localStorage.getItem('knowledgeBaseLibraryId');
+                        currentLibraryId = (savedLib && masterLibrary[savedLib]) ? savedLib : sortedLibraryIds[0];
+                    }
+
                     renderApp();
                 } catch (error) {
                     console.error("Failed to load content:", error);
