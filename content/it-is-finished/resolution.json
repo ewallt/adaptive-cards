@@ -1,0 +1,52 @@
+{
+  "knowledgeBase": {
+    "display_order": 30,
+    "id": "kb-gc-resolution-01",
+    "pageTitle": "The Great Controversy: The Final Resolution",
+    "title": "The Great Controversy: The Final Resolution",
+    "summary": "An examination of the aftermath and final outcome of the cosmic conflict, including Satan's final deception, the self-destructive nature of sin, and the eternal vindication of God's character and government.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-24T22:10:00-06:00",
+    "entryPoints": [
+      {
+        "id": "gc-08-deception",
+        "step": 1,
+        "title": "The Final Deception",
+        "corePrinciple": "After the cross, Satan's final great deception is the claim that Christ's death abolished God's law, leading to a worldwide conflict over obedience.",
+        "development": "Satan declared that mercy destroyed justice, that the death of Christ abrogated the Father's law. Had it been possible for the law to be changed, Christ need not have died. It was because the law was changeless that Jesus was lifted up on the cross. Yet the very means by which Christ established the law Satan represented as destroying it. This is the last great deception. By leading men to disregard one precept and substitute human law for God's law, Satan will seek to control the world.",
+        "scriptureReferences": [
+          {
+            "citation": "James 2:10",
+            "text": "For whosoever shall keep the whole law, and yet offend in one point, he is guilty of all.",
+            "relevance": "Explains why Satan's purpose is gained if he can lead men to disregard even one precept."
+          }
+        ],
+        "keyQuote": "The warfare against God's law, which was begun in heaven, will be continued until the end of time. Every man will be tested."
+      },
+      {
+        "id": "gc-09-result",
+        "step": 2,
+        "title": "The Self-Destruction of Sin",
+        "corePrinciple": "The final destruction of evil is not an arbitrary act of power but the natural consequence of choosing to separate from God, the source of life.",
+        "development": "The rejecters of God's mercy reap what they have sown. God is the fountain of life; and when one chooses the service of sin, he separates from God, and thus cuts himself off from life. He is 'alienated from the life of God.' By a life of rebellion, Satan and all who unite with him place themselves so out of harmony with God that His very presence is to them a consuming fire. The glory of Him who is love will destroy them.",
+        "scriptureReferences": [
+          {
+            "citation": "Ephesians 4:18",
+            "text": "Having the understanding darkened, being alienated from the life of God...",
+            "relevance": "Describes the state of separation from God that sin causes."
+          }
+        ],
+        "keyQuote": "This is not an act of arbitrary power on the part of God. The rejecters of His mercy reap that which they have sown."
+      },
+      {
+        "id": "gc-10-vindication",
+        "step": 3,
+        "title": "The Eternal Vindication",
+        "corePrinciple": "At the end of the controversy, God's character of love is fully vindicated, His law is seen to be perfect, and the universe is made eternally secure from sin.",
+        "development": "At the beginning, the angels did not understand all that was involved. Had Satan been destroyed then, a doubt of God's goodness might have remained. But not so when the great controversy shall be ended. Then, the plan of redemption having been completed, the character of God is revealed to all created intelligences. The precepts of His law are seen to be perfect and immutable. Then sin has made manifest its nature, Satan his character. The extermination of sin will vindicate God's love and establish His honor before a universe of beings who delight to do His will.",
+        "scriptureReferences": [],
+        "keyQuote": "Well, then, might the angels rejoice as they looked upon the Saviour's cross; for though they did not then understand all, they knew that the destruction of sin and Satan was forever made certain, that the redemption of man was assured, and that the universe was made eternally secure."
+      }
+    ]
+  }
+}

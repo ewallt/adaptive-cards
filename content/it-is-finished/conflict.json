@@ -1,0 +1,52 @@
+{
+  "knowledgeBase": {
+    "display_order": 10,
+    "id": "kb-gc-conflict-01",
+    "pageTitle": "The Great Controversy: The Cosmic Conflict",
+    "title": "The Great Controversy: The Cosmic Conflict",
+    "summary": "An introduction to the cosmic conflict, exploring the origin of Satan's rebellion, his central claim against God's government, and how the life of Christ became the focal point of this battle.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-24T22:10:00-06:00",
+    "entryPoints": [
+      {
+        "id": "gc-01-rebellion",
+        "step": 1,
+        "title": "The Unseen Rebellion",
+        "corePrinciple": "God's government is moral, based on love, so rebellion could not be overcome by force but required time for Satan's principles to be revealed.",
+        "development": "God could have destroyed Satan as easily as one can cast a pebble to the earth; but He did not. Rebellion was not to be overcome by force. Compelling power is found only under Satan's government. The Lord's authority rests upon goodness, mercy, and love. In the councils of heaven it was decided that time must be given for Satan to develop the principles which were the foundation of his system of government, so they might be seen by the heavenly universe.",
+        "scriptureReferences": [
+          {
+            "citation": "Ezekiel 28:12",
+            "text": "Thou sealest up the sum, full of wisdom, and perfect in beauty.",
+            "relevance": "Describes Lucifer's original exalted state, explaining why his deception was so difficult to unveil."
+          }
+        ],
+        "keyQuote": "Rebellion was not to be overcome by force. Compelling power is found only under Satan's government. The Lord's principles are not of this order."
+      },
+      {
+        "id": "gc-02-claim",
+        "step": 2,
+        "title": "Satan's Central Claim",
+        "corePrinciple": "Satan claimed that God's law could not be obeyed and that justice was inconsistent with mercy, making forgiveness for the sinner impossible.",
+        "development": "In the opening of the great controversy, Satan had declared that the law of God could not be obeyed, that justice was inconsistent with mercy, and that, should the law be broken, it would be impossible for the sinner to be pardoned. Every sin must meet its punishment, urged Satan; and if God should remit the punishment of sin, He would not be a God of truth and justice. Because he, after his rebellion, had been banished from heaven, Satan claimed that the human race must be forever shut out from God's favor.",
+        "scriptureReferences": [],
+        "keyQuote": "God could not be just, he urged, and yet show mercy to the sinner."
+      },
+      {
+        "id": "gc-03-battlefield",
+        "step": 3,
+        "title": "The Earthly Battlefield",
+        "corePrinciple": "When Jesus came to earth, He met every temptation of Satan, and every attack only served to reveal His perfect, spotless character.",
+        "development": "When Jesus came into the world, Satan's power was turned against Him. From the time He appeared as a babe in Bethlehem, the usurper worked to bring about His destruction. He sought to prevent Jesus from developing a perfect childhood, a faultless manhood, a holy ministry, and an unblemished sacrifice. But he was defeated. He could not lead Jesus into sin. From the desert to Calvary, the storm of Satan's wrath beat upon Him, but the more mercilessly it fell, the more firmly did the Son of God cling to the hand of His Father.",
+        "scriptureReferences": [
+          {
+            "citation": "Hebrews 4:15",
+            "text": "For we have not an high priest which cannot be touched with the feeling of our infirmities; but was in all points tempted like as we are, yet without sin.",
+            "relevance": "Confirms that Christ faced temptation but remained sinless, defeating Satan's efforts."
+          }
+        ],
+        "keyQuote": "All the efforts of Satan to oppress and overcome Him only brought out in a purer light His spotless character."
+      }
+    ]
+  }
+}

@@ -1,469 +1,227 @@
- <!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Knowledge Base</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-
         body {
-
             font-family: 'Inter', sans-serif;
-
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         #app-container {
-
             display: flex;
-
             flex-direction: column;
-
             min-height: calc(100vh - 4rem);
-
         }
-
-        #page-viewport {
-
-            width: 100%;
-
-            overflow: visible;
-
-        }
-
-        #kb-container {
-
-            display: block;
-
-        }
-
-        .kb-card {
-
-            margin-bottom: 2rem;
-
-        }
-
-        /* General Component Styles */
-
-        .step-circle {
-
-            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; flex-shrink: 0;
-
-        }
-
-        .control-button {
-
-            padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 600; transition: all 0.2s ease-in-out; border: 2px solid transparent;
-
-        }
-
-        .control-button.active {
-
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-
-        }
-
-        .theme-button.active {
-
-            color: white;
-
-        }
-
-        .control-button.inactive {
-
-             background-color: #f1f5f9; color: #334155;
-
-        }
-
+        #page-viewport { width: 100%; overflow: visible; }
+        #kb-container { display: block; }
+        .kb-card { margin-bottom: 2rem; }
+        .step-circle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; flex-shrink: 0; }
+        .control-button { padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 600; transition: all 0.2s ease-in-out; border: 2px solid transparent; }
+        .control-button.active { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+        .theme-button.active { color: white; }
+        .control-button.inactive { background-color: #f1f5f9; color: #334155; }
         .control-button.inactive:hover { background-color: #e2e8f0; }
-
-        #topic-switcher {
-
-            padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; border: 1px solid #d1d5db; max-width: 100%;
-
-        }
-
+        .topic-switcher, .library-switcher { padding: 0.5rem 1rem; border-radius: 9999px; font-weight: 600; border: 1px solid #d1d5db; max-width: 100%; }
+        .library-switcher { margin-bottom: 1rem; }
     </style>
-
 </head>
-
-<body class="bg-slate-50 text-slate-800">
-
-
+<body class="bg-slate-50 text-slate-800 dark:bg-gray-900 dark:text-gray-100">
 
     <div id="app-container" class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 w-full">
-
         <header class="text-center mb-8">
-
-            <h1 id="main-title" class="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl"></h1>
-
-            <div id="topic-switcher-container" class="mt-4"></div>
-
+            <h1 id="main-title" class="text-3xl font-bold text-slate-900 tracking-tight sm:text-4xl dark:text-gray-100">Knowledge Base</h1>
+            <div id="library-switcher-container" class="mt-4"></div>
+            <div id="topic-switcher-container" class="mt-2"></div>
         </header>
 
-
-
         <div class="flex flex-col sm:flex-row justify-center items-center gap-6 my-6 flex-wrap">
-
-            <div id="theme-switcher" class="flex items-center gap-2 p-1 bg-slate-200 rounded-full">
-
+            <div id="theme-switcher" class="flex items-center gap-2 p-1 bg-slate-200 rounded-full dark:bg-gray-800">
                 <button data-theme="blue" class="theme-button control-button">Blue</button>
-
                 <button data-theme="green" class="theme-button control-button">Green</button>
-
                 <button data-theme="indigo" class="theme-button control-button">Indigo</button>
-
                 <button data-theme="dark" class="theme-button control-button">Dark</button>
-
             </div>
-
         </div>
-
-
 
         <div id="page-viewport" class="flex-grow">
-
             <div id="kb-container"></div>
-
         </div>
-
     </div>
 
-
-
     <script>
-
         document.addEventListener('DOMContentLoaded', function() {
-
             // --- STATE MANAGEMENT ---
-
-            let libraryData = null;
-
+            let masterLibrary = null;
+            let sortedLibraryIds = null;
             let sortedTopicIds = null;
-
+            let currentLibraryId = null;
             let currentTopicId = null;
-
             let currentTheme = 'blue';
 
-
-
             // --- THEME DEFINITIONS ---
-
             const themes = {
-
                 blue: { accentBg: 'bg-blue-600', accentText: 'text-blue-800', accentBgLight: 'bg-blue-50', accentBorder: 'border-blue-500' },
-
                 green: { accentBg: 'bg-green-700', accentText: 'text-green-800', accentBgLight: 'bg-green-50', accentBorder: 'border-green-600' },
-
                 indigo: { accentBg: 'bg-indigo-600', accentText: 'text-indigo-800', accentBgLight: 'bg-indigo-50', accentBorder: 'border-indigo-500' },
-
                 dark: { accentBg: 'bg-gray-800', accentText: 'text-gray-100', accentBgLight: 'bg-gray-900', accentBorder: 'border-gray-600' }
-
             };
 
-
-
             // --- DOM ELEMENT REFERENCES ---
-
             const appContainer = document.getElementById('app-container');
-
             const container = document.getElementById('kb-container');
-
             const mainTitleEl = document.getElementById('main-title');
-
             const themeSwitcher = document.getElementById('theme-switcher');
-
+            const librarySwitcherContainer = document.getElementById('library-switcher-container');
             const topicSwitcherContainer = document.getElementById('topic-switcher-container');
 
-
-
             // --- RENDER FUNCTIONS ---
-
             function renderApp() {
+                if (!masterLibrary || !currentLibraryId) return;
+                const currentLibrary = masterLibrary[currentLibraryId];
+                if (!currentLibrary) return;
+                sortedTopicIds = Object.keys(currentLibrary).sort((a, b) => (currentLibrary[a].knowledgeBase.display_order || 0) - (currentLibrary[b].knowledgeBase.display_order || 0));
+                if (!currentTopicId || !currentLibrary[currentTopicId]) {
+                    currentTopicId = sortedTopicIds[0];
+                }
+                const topicData = currentLibrary[currentTopicId].knowledgeBase;
+                if (!topicData) return;
+                document.title = topicData.pageTitle || 'Knowledge Base';
+                mainTitleEl.textContent = topicData.title;
 
-                if (!libraryData || !currentTopicId) return;
-
-                const kbData = libraryData[currentTopicId].knowledgeBase;
-
-                if (!kbData) return;
-
-                
-
-                document.title = kbData.pageTitle || 'Knowledge Base';
-
-                mainTitleEl.textContent = kbData.title;
-
-
-
+                buildLibrarySwitcher();
                 buildTopicSwitcher();
-
-                renderContent(kbData);
-
-                applyTheme(currentTheme);
-
+                renderContent(topicData);
             }
 
-
+            // --- RESTORED THIS FUNCTION ---
+            function buildLibrarySwitcher() {
+                let html = '<select id="library-switcher" class="library-switcher dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100">';
+                sortedLibraryIds.forEach(libraryId => {
+                    const displayName = libraryId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    const isSelected = libraryId === currentLibraryId ? 'selected' : '';
+                    html += `<option value="${libraryId}" ${isSelected}>${displayName}</option>`;
+                });
+                html += '</select>';
+                librarySwitcherContainer.innerHTML = html;
+                document.getElementById('library-switcher').addEventListener('change', handleLibraryChange);
+            }
 
             function buildTopicSwitcher() {
-
-                let html = '<select id="topic-switcher">';
-
+                let html = '<select id="topic-switcher" class="topic-switcher dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100">';
                 sortedTopicIds.forEach(topicId => {
-
-                    const topic = libraryData[topicId].knowledgeBase;
-
+                    const topic = masterLibrary[currentLibraryId][topicId].knowledgeBase;
                     const isSelected = topicId === currentTopicId ? 'selected' : '';
-
                     html += `<option value="${topicId}" ${isSelected}>${topic.title}</option>`;
-
                 });
-
                 html += '</select>';
-
                 topicSwitcherContainer.innerHTML = html;
-
                 document.getElementById('topic-switcher').addEventListener('change', handleTopicChange);
-
             }
-
-
-
-            function renderContent(kbData) {
-
+            
+            function renderContent(topicData) {
                 container.innerHTML = '';
-
-                kbData.entryPoints.sort((a,b) => a.step - b.step).forEach(entry => {
-
+                topicData.entryPoints.sort((a,b) => a.step - b.step).forEach(entry => {
                     const cardHTML = `
-
                         <div class="kb-card p-2">
-
-                            <div class="bg-white rounded-xl shadow-md flex-grow flex flex-col h-full">
-
+                            <div class="bg-white rounded-xl shadow-md flex-grow flex flex-col h-full dark:bg-gray-800">
                                 <div class="card-content-wrapper p-6 sm:p-8">
-
                                     <div class="flex items-start sm:items-center space-x-4 mb-4">
-
                                         <div class="step-circle themable-accent-bg">${entry.step}</div>
-
-                                        <h2 class="text-2xl font-bold text-slate-900">${entry.title}</h2>
-
+                                        <h2 class="text-2xl font-bold text-slate-900 dark:text-gray-100">${entry.title}</h2>
                                     </div>
-
                                     <p class="themable-accent-text themable-accent-bg-light text-lg font-semibold p-4 rounded-lg mb-6">${entry.corePrinciple}</p>
-
-                                    <p class="text-slate-600 leading-relaxed mb-6">${entry.development}</p>
-
+                                    <p class="text-slate-600 leading-relaxed mb-6 dark:text-gray-300">${entry.development}</p>
                                     ${(entry.scriptureReferences && entry.scriptureReferences.length > 0) ? entry.scriptureReferences.map(ref => `
-
-                                        <div class="bg-slate-100 border-l-4 border-slate-400 p-4 rounded-r-lg mb-4">
-
-                                            <p class="font-bold text-slate-800">${ref.citation}</p>
-
-                                            <p class="italic text-slate-700 mt-1">"${ref.text}"</p>
-
-                                            <p class="text-sm text-slate-600 mt-2">${ref.relevance}</p>
-
+                                        <div class="bg-slate-100 border-l-4 border-slate-400 p-4 rounded-r-lg mb-4 dark:bg-gray-700 dark:border-slate-500">
+                                            <p class="font-bold text-slate-800 dark:text-gray-200">${ref.citation}</p>
+                                            <p class="italic text-slate-700 mt-1 dark:text-gray-300">"${ref.text}"</p>
+                                            <p class="text-sm text-slate-600 mt-2 dark:text-gray-300">${ref.relevance}</p>
                                         </div>
-
                                     `).join('') : ''}
-
                                     ${entry.keyQuote ? `
-
                                         <blockquote class="themable-accent-border border-l-4 pl-4 py-2 my-6">
-
-                                            <p class="text-lg italic text-slate-700 font-medium">"${entry.keyQuote}"</p>
-
+                                            <p class="text-lg italic text-slate-700 font-medium dark:text-gray-300">"${entry.keyQuote}"</p>
                                         </blockquote>
-
                                     ` : ''}
-
                                 </div>
-
                             </div>
-
                         </div>`;
-
                     container.innerHTML += cardHTML;
-
                 });
-
+                applyThemeAccentColors(currentTheme);
             }
 
-
-
-            // --- THEME LOGIC ---
-
-            function applyTheme(themeName) {
-
+            function applyThemeAccentColors(themeName) {
                 currentTheme = themeName;
-
+                localStorage.setItem('knowledgeBaseTheme', themeName);
                 const theme = themes[themeName];
-
-                
-
                 if (themeName === 'dark') {
-
-                    document.body.className = 'bg-gray-900 text-gray-100';
-
+                    document.documentElement.classList.add('dark');
                 } else {
-
-                    document.body.className = 'bg-slate-50 text-slate-800';
-
+                    document.documentElement.classList.remove('dark');
                 }
-
-                
-
-                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBg)); el.classList.add(theme.accentBg); });
-
-                document.querySelectorAll('.themable-accent-text').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentText)); el.classList.add(theme.accentText); });
-
-                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBgLight)); el.classList.add(theme.accentBgLight); });
-
-                document.querySelectorAll('.themable-accent-border').forEach(el => { el.classList.remove(...Object.values(themes).map(t => t.accentBorder)); el.classList.add(theme.accentBorder); });
-
-
-
-                if (themeName === 'dark') {
-
-                    document.querySelectorAll('.kb-card .bg-white').forEach(el => { el.classList.remove('bg-white'); el.classList.add('bg-gray-800'); });
-
-                    document.querySelectorAll('.text-slate-900').forEach(el => { el.classList.remove('text-slate-900'); el.classList.add('text-gray-100'); });
-
-                    document.querySelectorAll('.text-slate-600').forEach(el => { el.classList.remove('text-slate-600'); el.classList.add('text-gray-300'); });
-
-                    document.querySelectorAll('.bg-slate-100').forEach(el => { el.classList.remove('bg-slate-100'); el.classList.add('bg-gray-700'); });
-
-                    document.querySelectorAll('.bg-slate-200').forEach(el => { el.classList.remove('bg-slate-200'); el.classList.add('bg-gray-800'); });
-
-                    document.querySelectorAll('.text-slate-800').forEach(el => { el.classList.remove('text-slate-800'); el.classList.add('text-gray-200'); });
-
-                    document.querySelectorAll('.text-slate-700').forEach(el => { el.classList.remove('text-slate-700'); el.classList.add('text-gray-300'); });
-
-                    document.querySelector('#topic-switcher')?.classList.add('bg-gray-800', 'border-gray-600', 'text-gray-100');
-
-                } else {
-
-                    document.querySelectorAll('.kb-card .bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-white'); });
-
-                    document.querySelectorAll('.text-gray-100').forEach(el => { el.classList.remove('text-gray-100'); el.classList.add('text-slate-900'); });
-
-                    document.querySelectorAll('.text-gray-300').forEach(el => { el.classList.remove('text-gray-300'); el.classList.add('text-slate-600'); });
-
-                    document.querySelectorAll('.bg-gray-700').forEach(el => { el.classList.remove('bg-gray-700'); el.classList.add('bg-slate-100'); });
-
-                    document.querySelectorAll('.bg-gray-800').forEach(el => { el.classList.remove('bg-gray-800'); el.classList.add('bg-slate-200'); });
-
-                    document.querySelectorAll('.text-gray-200').forEach(el => { el.classList.remove('text-gray-200'); el.classList.add('text-slate-800'); });
-
-                    document.querySelector('#topic-switcher')?.classList.remove('bg-gray-800', 'border-gray-600', 'text-gray-100');
-
-                }
-
-
-
+                document.querySelectorAll('.themable-accent-bg').forEach(el => { el.className = el.className.replace(/bg-\w+-\d+/g, '') + ' ' + theme.accentBg; });
+                document.querySelectorAll('.themable-accent-text').forEach(el => { el.className = el.className.replace(/text-\w+-\d+/g, '') + ' ' + theme.accentText; });
+                document.querySelectorAll('.themable-accent-bg-light').forEach(el => { el.className = el.className.replace(/bg-\w+-\d+/g, '') + ' ' + theme.accentBgLight; });
+                document.querySelectorAll('.themable-accent-border').forEach(el => { el.className = el.className.replace(/border-\w+-\d+/g, '') + ' ' + theme.accentBorder; });
                 themeSwitcher.querySelectorAll('.theme-button').forEach(button => {
-
                     const buttonTheme = button.dataset.theme;
-
+                    button.classList.remove('active', ...Object.values(themes).map(t => t.accentBg));
+                    button.classList.add('inactive');
                     if (buttonTheme === themeName) {
-
                         button.classList.remove('inactive');
-
-                        button.classList.add('active', themes[buttonTheme].accentBg);
-
-                    } else {
-
-                        button.classList.remove('active', ...Object.values(themes).map(t => t.accentBg));
-
-                        button.classList.add('inactive');
-
+                        button.classList.add('active', theme.accentBg);
                     }
-
                 });
-
             }
-
-
 
             // --- EVENT HANDLERS ---
+            // --- RESTORED THIS FUNCTION ---
+            function handleLibraryChange(e) {
+                currentLibraryId = e.target.value;
+                currentTopicId = null; 
+                renderApp();
+            }
 
             function handleTopicChange(e) {
-
                 currentTopicId = e.target.value;
-
                 renderApp();
-
             }
-
             
-
-            themeSwitcher.addEventListener('click', (e) => { if (e.target.matches('.theme-button')) applyTheme(e.target.dataset.theme); });
-
-
+            themeSwitcher.addEventListener('click', (e) => { 
+                if (e.target.matches('.theme-button')) {
+                    applyThemeAccentColors(e.target.dataset.theme);
+                }
+            });
 
             // --- INITIALIZE ---
-
             async function initializeApp() {
-
                 try {
-
+                    const savedTheme = localStorage.getItem('knowledgeBaseTheme') || 'blue';
+                    applyThemeAccentColors(savedTheme);
                     const response = await fetch('./data/content.json'); 
-
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-                    libraryData = await response.json();
-
-                    
-
-                    sortedTopicIds = Object.keys(libraryData).sort((a,b) => {
-
-                        const orderA = libraryData[a].knowledgeBase.display_order || 0;
-
-                        const orderB = libraryData[b].knowledgeBase.display_order || 0;
-
-                        return orderA - orderB;
-
-                    });
-
-
-
-                    currentTopicId = sortedTopicIds[0];
-
+                    masterLibrary = await response.json();
+                    sortedLibraryIds = Object.keys(masterLibrary).sort();
+                    currentLibraryId = sortedLibraryIds[0];
                     renderApp();
-
                 } catch (error) {
-
                     console.error("Failed to load content:", error);
-
                     appContainer.innerHTML = `<div class="text-center p-8 bg-red-100 text-red-700 rounded-lg"><h3 class="font-bold text-lg">An error occurred</h3><p>Could not load content from ./data/content.json. Please ensure the file exists and is accessible.</p></div>`;
-
                 }
-
             }
-
             
-
             initializeApp();
-
         });
-
     </script>
-
 </body>
-
 </html>

@@ -1,0 +1,179 @@
+{
+  "conflict": {
+    "knowledgeBase": {
+      "display_order": 10,
+      "id": "kb-gc-conflict-01",
+      "pageTitle": "The Great Controversy: The Cosmic Conflict",
+      "title": "The Great Controversy: The Cosmic Conflict",
+      "summary": "An introduction to the cosmic conflict, exploring the origin of Satan's rebellion, his central claim against God's government, and how the life of Christ became the focal point of this battle.",
+      "author": "Gemini Assistant",
+      "lastUpdated": "2025-07-24T22:10:00-06:00",
+      "entryPoints": [
+        {
+          "id": "gc-01-rebellion",
+          "step": 1,
+          "title": "The Unseen Rebellion",
+          "corePrinciple": "God's government is moral, based on love, so rebellion could not be overcome by force but required time for Satan's principles to be revealed.",
+          "development": "God could have destroyed Satan as easily as one can cast a pebble to the earth; but He did not. Rebellion was not to be overcome by force. Compelling power is found only under Satan's government. The Lord's authority rests upon goodness, mercy, and love. In the councils of heaven it was decided that time must be given for Satan to develop the principles which were the foundation of his system of government, so they might be seen by the heavenly universe.",
+          "scriptureReferences": [
+            {
+              "citation": "Ezekiel 28:12",
+              "text": "Thou sealest up the sum, full of wisdom, and perfect in beauty.",
+              "relevance": "Describes Lucifer's original exalted state, explaining why his deception was so difficult to unveil."
+            }
+          ],
+          "keyQuote": "Rebellion was not to be overcome by force. Compelling power is found only under Satan's government. The Lord's principles are not of this order."
+        },
+        {
+          "id": "gc-02-claim",
+          "step": 2,
+          "title": "Satan's Central Claim",
+          "corePrinciple": "Satan claimed that God's law could not be obeyed and that justice was inconsistent with mercy, making forgiveness for the sinner impossible.",
+          "development": "In the opening of the great controversy, Satan had declared that the law of God could not be obeyed, that justice was inconsistent with mercy, and that, should the law be broken, it would be impossible for the sinner to be pardoned. Every sin must meet its punishment, urged Satan; and if God should remit the punishment of sin, He would not be a God of truth and justice. Because he, after his rebellion, had been banished from heaven, Satan claimed that the human race must be forever shut out from God's favor.",
+          "scriptureReferences": [],
+          "keyQuote": "God could not be just, he urged, and yet show mercy to the sinner."
+        },
+        {
+          "id": "gc-03-battlefield",
+          "step": 3,
+          "title": "The Earthly Battlefield",
+          "corePrinciple": "When Jesus came to earth, He met every temptation of Satan, and every attack only served to reveal His perfect, spotless character.",
+          "development": "When Jesus came into the world, Satan's power was turned against Him. From the time He appeared as a babe in Bethlehem, the usurper worked to bring about His destruction. He sought to prevent Jesus from developing a perfect childhood, a faultless manhood, a holy ministry, and an unblemished sacrifice. But he was defeated. He could not lead Jesus into sin. From the desert to Calvary, the storm of Satan's wrath beat upon Him, but the more mercilessly it fell, the more firmly did the Son of God cling to the hand of His Father.",
+          "scriptureReferences": [
+            {
+              "citation": "Hebrews 4:15",
+              "text": "For we have not an high priest which cannot be touched with the feeling of our infirmities; but was in all points tempted like as we are, yet without sin.",
+              "relevance": "Confirms that Christ faced temptation but remained sinless, defeating Satan's efforts."
+            }
+          ],
+          "keyQuote": "All the efforts of Satan to oppress and overcome Him only brought out in a purer light His spotless character."
+        }
+      ]
+    }
+  },
+  "resolution": {
+    "knowledgeBase": {
+      "display_order": 30,
+      "id": "kb-gc-resolution-01",
+      "pageTitle": "The Great Controversy: The Final Resolution",
+      "title": "The Great Controversy: The Final Resolution",
+      "summary": "An examination of the aftermath and final outcome of the cosmic conflict, including Satan's final deception, the self-destructive nature of sin, and the eternal vindication of God's character and government.",
+      "author": "Gemini Assistant",
+      "lastUpdated": "2025-07-24T22:10:00-06:00",
+      "entryPoints": [
+        {
+          "id": "gc-08-deception",
+          "step": 1,
+          "title": "The Final Deception",
+          "corePrinciple": "After the cross, Satan's final great deception is the claim that Christ's death abolished God's law, leading to a worldwide conflict over obedience.",
+          "development": "Satan declared that mercy destroyed justice, that the death of Christ abrogated the Father's law. Had it been possible for the law to be changed, Christ need not have died. It was because the law was changeless that Jesus was lifted up on the cross. Yet the very means by which Christ established the law Satan represented as destroying it. This is the last great deception. By leading men to disregard one precept and substitute human law for God's law, Satan will seek to control the world.",
+          "scriptureReferences": [
+            {
+              "citation": "James 2:10",
+              "text": "For whosoever shall keep the whole law, and yet offend in one point, he is guilty of all.",
+              "relevance": "Explains why Satan's purpose is gained if he can lead men to disregard even one precept."
+            }
+          ],
+          "keyQuote": "The warfare against God's law, which was begun in heaven, will be continued until the end of time. Every man will be tested."
+        },
+        {
+          "id": "gc-09-result",
+          "step": 2,
+          "title": "The Self-Destruction of Sin",
+          "corePrinciple": "The final destruction of evil is not an arbitrary act of power but the natural consequence of choosing to separate from God, the source of life.",
+          "development": "The rejecters of God's mercy reap what they have sown. God is the fountain of life; and when one chooses the service of sin, he separates from God, and thus cuts himself off from life. He is 'alienated from the life of God.' By a life of rebellion, Satan and all who unite with him place themselves so out of harmony with God that His very presence is to them a consuming fire. The glory of Him who is love will destroy them.",
+          "scriptureReferences": [
+            {
+              "citation": "Ephesians 4:18",
+              "text": "Having the understanding darkened, being alienated from the life of God...",
+              "relevance": "Describes the state of separation from God that sin causes."
+            }
+          ],
+          "keyQuote": "This is not an act of arbitrary power on the part of God. The rejecters of His mercy reap that which they have sown."
+        },
+        {
+          "id": "gc-10-vindication",
+          "step": 3,
+          "title": "The Eternal Vindication",
+          "corePrinciple": "At the end of the controversy, God's character of love is fully vindicated, His law is seen to be perfect, and the universe is made eternally secure from sin.",
+          "development": "At the beginning, the angels did not understand all that was involved. Had Satan been destroyed then, a doubt of God's goodness might have remained. But not so when the great controversy shall be ended. Then, the plan of redemption having been completed, the character of God is revealed to all created intelligences. The precepts of His law are seen to be perfect and immutable. Then sin has made manifest its nature, Satan his character. The extermination of sin will vindicate God's love and establish His honor before a universe of beings who delight to do His will.",
+          "scriptureReferences": [],
+          "keyQuote": "Well, then, might the angels rejoice as they looked upon the Saviour's cross; for though they did not then understand all, they knew that the destruction of sin and Satan was forever made certain, that the redemption of man was assured, and that the universe was made eternally secure."
+        }
+      ]
+    }
+  },
+  "the-cross": {
+    "knowledgeBase": {
+      "display_order": 20,
+      "id": "kb-gc-cross-01",
+      "pageTitle": "The Great Controversy: The Victory at the Cross",
+      "title": "The Great Controversy: The Victory at the Cross",
+      "summary": "An exploration of the central event in the cosmic conflict: the death of Christ. This module covers the universal significance of the crucifixion and how it served as a decisive victory in the battle between good and evil.",
+      "author": "Gemini Assistant",
+      "lastUpdated": "2025-07-24T22:10:00-06:00",
+      "entryPoints": [
+        {
+          "id": "gc-04-witness",
+          "step": 1,
+          "title": "A Universe as Witness",
+          "corePrinciple": "All of heaven and the unfallen worlds followed the closing scenes of the conflict with intense interest, witnessing Christ's suffering and trial.",
+          "development": "Heaven beheld the Victim betrayed and hurried from one tribunal to another. It heard the sneers of His persecutors and the denial by one of His best-loved disciples. Heaven viewed with grief and amazement Christ hanging upon the cross, blood flowing from His wounded temples and sweat tinged with blood upon His brow. His labored breath grew quick and deep, as His soul panted under the burden of the sins of the world. All heaven was filled with wonder at His prayer amidst terrible suffering: 'Father, forgive them; for they know not what they do.'",
+          "scriptureReferences": [
+            {
+              "citation": "Matthew 26:39",
+              "text": "Father, if it be possible, let this cup pass from Me.",
+              "relevance": "The agonizing prayer from Gethsemane that all of heaven heard."
+            }
+          ],
+          "keyQuote": "What a sight for the heavenly universe! Men, formed in the image of God, joining to crush out the life of His only-begotten Son."
+        },
+        {
+          "id": "gc-05-finished",
+          "step": 2,
+          "title": "'It Is Finished'",
+          "corePrinciple": "Christ's cry, 'It is finished,' signified the winning of the battle, the full revelation of Satan's character, and the loss of his kingdom.",
+          "development": "As a Conqueror, Christ planted His banner on the eternal heights. The cry, 'It is finished,' had a deep significance for the angels and the unfallen worlds. Satan's disguise was torn away. His administration was laid open before the universe. By shedding the blood of the Son of God, he had revealed himself as a murderer and uprooted himself from the sympathies of the heavenly beings. The last link of sympathy between Satan and the heavenly world was broken.",
+          "scriptureReferences": [
+            {
+              "citation": "John 19:30",
+              "text": "It is finished.",
+              "relevance": "The Saviour's parting breath, declaring the victory won."
+            }
+          ],
+          "keyQuote": "All heaven triumphed in the Saviour's victory. Satan was defeated, and knew that his kingdom was lost."
+        },
+        {
+          "id": "gc-06-reconciliation",
+          "step": 3,
+          "title": "Law and Mercy Reconciled",
+          "corePrinciple": "Christ's sacrifice refuted Satan's claim that justice and mercy were incompatible, proving that God can be just while justifying the believer.",
+          "development": "Through Jesus, God's mercy was manifested to men; but mercy does not set aside justice. The law reveals God's character, and not a jot of it could be changed. God did not change His law, but He sacrificed Himself, in Christ, for man's redemption. Christ lived a holy life and developed a perfect character. These He offers as a free gift to all who will receive them. His life stands for the life of men.",
+          "scriptureReferences": [
+            {
+              "citation": "2 Corinthians 5:19",
+              "text": "God was in Christ, reconciling the world unto Himself.",
+              "relevance": "Shows that the reconciliation was God's own work through the sacrifice of Christ."
+            }
+          ],
+          "keyQuote": "God's love has been expressed in His justice no less than in His mercy. Justice is the foundation of His throne, and the fruit of His love."
+        },
+        {
+          "id": "gc-07-foundation",
+          "step": 4,
+          "title": "The Foundation of Forgiveness",
+          "corePrinciple": "Forgiveness is a free gift founded entirely upon Christ's righteousness, not our own merit, which fulfills the very righteousness of the law.",
+          "development": "The law requires righteousness—a righteous life, a perfect character; and this man has not to give. But Christ, coming to the earth as man, lived a holy life. He offers this character as a free gift. His life stands for the life of men, granting remission for past sins. More than this, Christ imbues men with the attributes of God, building up human character in the similitude of the divine. Thus the very righteousness of the law is fulfilled in the believer, and God can be just while justifying those who believe.",
+          "scriptureReferences": [
+            {
+              "citation": "Romans 3:26",
+              "text": "...that He might be just, and the justifier of him which believeth in Jesus.",
+              "relevance": "The core principle that justice and mercy are both satisfied through Christ."
+            }
+          ],
+          "keyQuote": "Christ imbues men with the attributes of God. He builds up the human character after the similitude of the divine character, a goodly fabric of spiritual strength and beauty."
+        }
+      ]
+    }
+  }
+}

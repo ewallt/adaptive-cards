@@ -1,62 +1,59 @@
 const fs = require('fs');
 const path = require('path');
 
-// --- CONFIGURATION ---
-const contentRoot = path.join(__dirname, 'content');
-const outputDir = path.join(__dirname, 'public', 'data');
-const outputFile = path.join(outputDir, 'content.json');
-const configId = process.env.APP_CONFIG_ID;
+// --- Configuration ---
+const sourceBaseDir = 'content';
+const targetFile = 'public/data/content.json';
 
-// --- SCRIPT ---
-console.log(`Starting build for ID: '${configId}'...`);
-
-// 1. Validate environment variable
-if (!configId) {
-    console.error("Error: APP_CONFIG_ID environment variable not set.");
-    console.error("Usage (macOS/Linux): APP_CONFIG_ID=your-folder-name node build.js");
-    console.error("Usage (Windows PowerShell): $env:APP_CONFIG_ID='your-folder-name'; node build.js");
-    process.exit(1);
+// 1. Read the collection ID (folder name) from the environment variable
+const collectionId = process.env.APP_CONFIG_ID;
+if (!collectionId) {
+  console.error('❌ Error: APP_CONFIG_ID environment variable not set.');
+  console.error('   This should be the name of the subfolder in `/content`.');
+  console.error('   Example: APP_CONFIG_ID=non-violent-theology node build.js');
+  process.exit(1);
 }
 
-const sourceDir = path.join(contentRoot, configId);
+// 2. Define the path to the source collection folder
+const sourceCollectionPath = path.join(__dirname, sourceBaseDir, collectionId);
+const targetPath = path.join(__dirname, targetFile);
 
-// 2. Check if the source directory exists
-if (!fs.existsSync(sourceDir)) {
-    console.error(`Error: Source collection folder not found for ID '${configId}'.`);
-    console.error(`Looked for: ${sourceDir}`);
-    process.exit(1);
+// 3. Check if the source folder exists
+if (!fs.existsSync(sourceCollectionPath)) {
+  console.error(`❌ Error: Source collection folder not found for ID '${collectionId}'.`);
+  console.error(`   Looked for: ${sourceCollectionPath}`);
+  process.exit(1);
 }
 
-const aggregatedData = {};
-
+// 4. Read and combine all JSON files from the source folder
 try {
-    // 3. Read all files in the source directory
-    const files = fs.readdirSync(sourceDir);
+  const combinedData = {};
+  const files = fs.readdirSync(sourceCollectionPath);
 
-    // 4. Filter for .json files and process them
-    files.filter(file => path.extname(file).toLowerCase() === '.json').forEach(file => {
-        const filePath = path.join(sourceDir, file);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const jsonData = JSON.parse(fileContent);
-        const key = path.basename(file, '.json');
-        
-        aggregatedData[key] = jsonData;
-        console.log(`- Aggregated '${file}'`);
-    });
+  console.log(`🔎 Found ${files.length} files in '${collectionId}'...`);
 
-    // 5. Ensure the output directory exists
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
+  files.forEach(file => {
+    if (path.extname(file) === '.json') {
+      const filePath = path.join(sourceCollectionPath, file);
+      const fileContent = fs.readFileSync(filePath, 'utf8');
+      const jsonData = JSON.parse(fileContent);
+      
+      // Use the filename (without .json) as the key in the combined object
+      const key = path.basename(file, '.json');
+      combinedData[key] = jsonData;
+      console.log(`   - Added '${file}'`);
     }
+  });
 
-    // 6. Write the aggregated data to the output file
-    fs.writeFileSync(outputFile, JSON.stringify(aggregatedData, null, 2));
+  // 5. Write the combined JSON to the target file
+  // Ensure the target directory exists
+  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+  fs.writeFileSync(targetPath, JSON.stringify(combinedData, null, 2));
 
-    console.log('\nBuild successful!');
-    console.log(`Output written to: ${outputFile}`);
+  console.log(`✅ Successfully built combined JSON for '${collectionId}'.`);
+  console.log(`   Target: ${targetFile}`);
 
-} catch (error) {
-    console.error("\nAn error occurred during the build process:");
-    console.error(error);
-    process.exit(1);
+} catch (err) {
+  console.error(`❌ Error building app for collection '${collectionId}':`, err);
+  process.exit(1);
 }

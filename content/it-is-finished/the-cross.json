@@ -1,0 +1,73 @@
+{
+  "knowledgeBase": {
+    "display_order": 20,
+    "id": "kb-gc-cross-01",
+    "pageTitle": "The Great Controversy: The Victory at the Cross",
+    "title": "The Great Controversy: The Victory at the Cross",
+    "summary": "An exploration of the central event in the cosmic conflict: the death of Christ. This module covers the universal significance of the crucifixion and how it served as a decisive victory in the battle between good and evil.",
+    "author": "Gemini Assistant",
+    "lastUpdated": "2025-07-24T22:10:00-06:00",
+    "entryPoints": [
+      {
+        "id": "gc-04-witness",
+        "step": 1,
+        "title": "A Universe as Witness",
+        "corePrinciple": "All of heaven and the unfallen worlds followed the closing scenes of the conflict with intense interest, witnessing Christ's suffering and trial.",
+        "development": "Heaven beheld the Victim betrayed and hurried from one tribunal to another. It heard the sneers of His persecutors and the denial by one of His best-loved disciples. Heaven viewed with grief and amazement Christ hanging upon the cross, blood flowing from His wounded temples and sweat tinged with blood upon His brow. His labored breath grew quick and deep, as His soul panted under the burden of the sins of the world. All heaven was filled with wonder at His prayer amidst terrible suffering: 'Father, forgive them; for they know not what they do.'",
+        "scriptureReferences": [
+          {
+            "citation": "Matthew 26:39",
+            "text": "Father, if it be possible, let this cup pass from Me.",
+            "relevance": "The agonizing prayer from Gethsemane that all of heaven heard."
+          }
+        ],
+        "keyQuote": "What a sight for the heavenly universe! Men, formed in the image of God, joining to crush out the life of His only-begotten Son."
+      },
+      {
+        "id": "gc-05-finished",
+        "step": 2,
+        "title": "'It Is Finished'",
+        "corePrinciple": "Christ's cry, 'It is finished,' signified the winning of the battle, the full revelation of Satan's character, and the loss of his kingdom.",
+        "development": "As a Conqueror, Christ planted His banner on the eternal heights. The cry, 'It is finished,' had a deep significance for the angels and the unfallen worlds. Satan's disguise was torn away. His administration was laid open before the universe. By shedding the blood of the Son of God, he had revealed himself as a murderer and uprooted himself from the sympathies of the heavenly beings. The last link of sympathy between Satan and the heavenly world was broken.",
+        "scriptureReferences": [
+          {
+            "citation": "John 19:30",
+            "text": "It is finished.",
+            "relevance": "The Saviour's parting breath, declaring the victory won."
+          }
+        ],
+        "keyQuote": "All heaven triumphed in the Saviour's victory. Satan was defeated, and knew that his kingdom was lost."
+      },
+      {
+        "id": "gc-06-reconciliation",
+        "step": 3,
+        "title": "Law and Mercy Reconciled",
+        "corePrinciple": "Christ's sacrifice refuted Satan's claim that justice and mercy were incompatible, proving that God can be just while justifying the believer.",
+        "development": "Through Jesus, God's mercy was manifested to men; but mercy does not set aside justice. The law reveals God's character, and not a jot of it could be changed. God did not change His law, but He sacrificed Himself, in Christ, for man's redemption. Christ lived a holy life and developed a perfect character. These He offers as a free gift to all who will receive them. His life stands for the life of men.",
+        "scriptureReferences": [
+          {
+            "citation": "2 Corinthians 5:19",
+            "text": "God was in Christ, reconciling the world unto Himself.",
+            "relevance": "Shows that the reconciliation was God's own work through the sacrifice of Christ."
+          }
+        ],
+        "keyQuote": "God's love has been expressed in His justice no less than in His mercy. Justice is the foundation of His throne, and the fruit of His love."
+      },
+       {
+        "id": "gc-07-foundation",
+        "step": 4,
+        "title": "The Foundation of Forgiveness",
+        "corePrinciple": "Forgiveness is a free gift founded entirely upon Christ's righteousness, not our own merit, which fulfills the very righteousness of the law.",
+        "development": "The law requires righteousness—a righteous life, a perfect character; and this man has not to give. But Christ, coming to the earth as man, lived a holy life. He offers this character as a free gift. His life stands for the life of men, granting remission for past sins. More than this, Christ imbues men with the attributes of God, building up human character in the similitude of the divine. Thus the very righteousness of the law is fulfilled in the believer, and God can be just while justifying those who believe.",
+        "scriptureReferences": [
+          {
+            "citation": "Romans 3:26",
+            "text": "...that He might be just, and the justifier of him which believeth in Jesus.",
+            "relevance": "The core principle that justice and mercy are both satisfied through Christ."
+          }
+        ],
+        "keyQuote": "Christ imbues men with the attributes of God. He builds up the human character after the similitude of the divine character, a goodly fabric of spiritual strength and beauty."
+      }
+    ]
+  }
+}
